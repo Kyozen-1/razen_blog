@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPage\HomeController;
+use App\Http\Controllers\Auth\RazenBlog\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,11 @@ Route::get('/', [HomeController::class, 'beranda'])->name('beranda');
 Route::get('/panduan-karir', [HomeController::class, 'panduan_karir'])->name('panduan-karir');
 Route::get('/panduan-teknis', [HomeController::class, 'panduan_teknis'])->name('panduan-teknis');
 Route::get('/kosakata', [HomeController::class, 'kosakata'])->name('kosakata');
+
+Route::get('/login',[LoginController::class, 'showLoginForm'])->name('razen-blog.login');
+Route::post('/login', [LoginController::class, 'login'])->name('razen-blog.login.submit');
+Route::get('/logout', [LoginController::class, 'logout'])->name('razen-blog.logout');
+
+Route::group(['middleware' => 'auth:razen_blog'], function(){
+    @include('razen-blog.php');
+});
