@@ -16,24 +16,22 @@
 <meta content="summary_large_image" name="twitter:card">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="euFNMilTOMQzNT5XajbJXN4d-Y2vY82jFZwaea1x8tI" name="google-site-verification">
-<link href="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/css/revou.68f56a50a.min.css" rel="stylesheet" type="text/css">
+<link href="{{ asset('landing-page/assets/css/assets-global.website-files.com_61af164800e38c4f53c60b4e_css_revou.68f56a50a.min.css') }}" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
-<script async="" src="https://www.clarity.ms/s/0.7.8/clarity.js"></script>
-<script async="" src="https://www.clarity.ms/tag/uet/187024822"></script>
-<script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/static/main.MTY0NTk0YzcxMQ.js" data-id="C7U9HV8FLK2NRAIT00BG"></script>
-<script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/static/main.MTY0NTk0YzcxMQ.js" data-id="C7U9HV8FLK2NRAIT00BG"></script>
-<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-213XHLWDSP&amp;l=dataLayer&amp;cx=c"></script>
-<script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=C7U9HV8FLK2NRAIT00BG&amp;lib=ttq"></script>
-<script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=C7U9HV8FLK2NRAIT00BG&amp;lib=ttq"></script>
-<script src="https://connect.facebook.net/signals/config/393920814533839?v=2.9.106&amp;r=stable" async=""></script>
-<script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
-<script type="text/javascript" async="" src="https://bat.bing.com/bat.js"></script>
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script async="" src="{{ asset('landing-page/assets/js/clarity.ms_s_0.7.8_clarity.js') }}"></script>
+<script async="" src="{{ asset('landing-page/assets/js/clarity.ms_tag_uet_187024822') }}"></script>
+<script type="text/javascript" async="" src="{{ asset('landing-page/assets/js/analytics.tiktok.com_i18n_pixel_static_main.MTY0NTk0YzcxMQ.js') }}" data-id="C7U9HV8FLK2NRAIT00BG"></script>
+<script type="text/javascript" async="" src="{{ asset('landing-page/assets/js/googletagmanager.com_gtag_js_id=G-213XHLWDSP&amp;l=dataLayer&amp;cx=c') }}"></script>
+<script type="text/javascript" async="" src="{{ asset('landing-page/assets/js/analytics.tiktok.com_i18n_pixel_events.js_sdkid=C7U9HV8FLK2NRAIT00BG&amp;lib=ttq') }}"></script>
+<script src="{{ asset('landing-page/assets/js/connect.facebook.net_signals_config_393920814533839_v=2.9.106&amp;r=stable') }}" async=""></script>
+<script async="" src="{{ asset('landing-page/assets/js/connect.facebook.net_en_US_fbevents.js') }}"></script>
+<script type="text/javascript" async="" src="{{ asset('landing-page/assets/js/bat.bing.com_bat.js') }}"></script>
+<script type="text/javascript" async="" src="{{ asset('landing-page/assets/js/google-analytics.com_analytics.js') }}"></script>
 <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-M3W4WQB"></script>
-<script type="text/javascript" async="" src="https://www.gstatic.com/recaptcha/releases/Xh5Zjh8Od10-SgxpI_tcSnHR/recaptcha__id.js" crossorigin="anonymous" integrity="sha384-olinW8rd0MN5wesWMLQ9XhmZ6KHOYkt8Gsbmr3wxjFkNS8mlL8UgkRItHtgN7ZZ9"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic%7CMontserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic%7CLato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic%7COswald:200,300,400,500,600,700%7CRed+Hat+Display:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic" media="all">
+<script type="text/javascript" async="" src="{{ asset('landing-page/assets/js/gstatic.com_recaptcha_releases_Xh5Zjh8Od10-SgxpI_tcSnHR_recaptcha__id.js') }}" crossorigin="anonymous" integrity="sha384-olinW8rd0MN5wesWMLQ9XhmZ6KHOYkt8Gsbmr3wxjFkNS8mlL8UgkRItHtgN7ZZ9"></script>
+<script src="{{ asset('landing-page/assets/js/ajax.googleapis.com_ajax_libs_webfont_1.6.26_webfont.js') }}" type="text/javascript"></script>
+<link rel="stylesheet" href="{{ asset('landing-page/assets/css/fonts.googleapis.com_css_family=PT+Sans_400,400italic,700,700italic%7CMontserrat_100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,9.css') }}" media="all">
 <script type="text/javascript">
     WebFont.load({
         google: {
@@ -48,9 +46,9 @@
         n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
     }(window, document);
 </script>
-<link href="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/61af164800e38cd504c60bad_RevoU%20favicon.svg" rel="shortcut icon" type="image/x-icon">
-<link href="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/61af164800e38c10e6c60bac_RevoU%20centered.svg" rel="apple-touch-icon">
-<script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
+<link href="{{ asset('landing-page/assets/img/icon/61af164800e38cd504c60bad_RevoU favicon.svg') }}" rel="shortcut icon" type="image/x-icon">
+<link href="{{ asset('landing-page/assets/img/icon/61af164800e38c10e6c60bac_RevoU centered.svg') }}" rel="apple-touch-icon">
+<script src="{{ asset('landing-page/assets/js/google.com_recaptcha_api.js') }}" type="text/javascript"></script>
 <!-- Google Tag Manager -->
 <script>
     (function(w, d, s, l, i) {
