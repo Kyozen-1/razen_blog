@@ -68,6 +68,37 @@
                         <span class="label">Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    @if (request()->routeIs('razen-blog.admin.profil.index'))
+                        <a href="{{ route('razen-blog.admin.profil.index') }}" class="active">
+                    @else
+                        <a href="{{ route('razen-blog.admin.profil.index') }}">
+                    @endif
+                        <i data-acorn-icon="home-garage" class="icon" data-acorn-size="18"></i>
+                        <span class="label">Profil</span>
+                    </a>
+                </li>
+                <li>
+                    @if (request()->routeIs('razen-blog.landing-page.beranda.index'))
+                    <a href="#landing_page" class="active">
+                    @else
+                    <a href="#landing_page">
+                    @endif
+                        <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                        <span class="label">Landing Page</span>
+                    </a>
+                    <ul id="landing_page">
+                        <li>
+                            @if (request()->routeIs('razen-blog.landing-page.beranda.index'))
+                                <a href="{{ route('razen-blog.landing-page.beranda.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.landing-page.beranda.index') }}">
+                            @endif
+                                <span class="label">Beranda</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- Menu End -->

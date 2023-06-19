@@ -21,7 +21,7 @@
             </div>
             <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0"></div>
         </div>
-        <div class="page-padding-home">
+        <div class="page-padding-home" id="page-padding-home">
             <div class="container-large">
                 <div class="padding-vertical padding-xhuge revoupedia">
                     <div class="w-layout-grid program-header_grid">
@@ -54,7 +54,7 @@
 @endsection
 
 @section('content')
-    <section id="get-started" data-w-id="ef9b5c07-bbc4-8281-81d7-997305c63d40" class="section-panduan_karir is-relative">
+    <section id="section-panduan_karir" data-w-id="ef9b5c07-bbc4-8281-81d7-997305c63d40" class="section-panduan_karir is-relative">
         <div class="padding-vertical padding-medium">
             <div class="page-padding">
             <div class="container-large">
@@ -142,7 +142,7 @@
             </div>
         </div>
     </section>
-    <section data-w-id="31b9f1f3-29bc-e241-6359-164181754dba" class="section-panduan_teknis">
+    <section id="section-panduan_teknis" data-w-id="31b9f1f3-29bc-e241-6359-164181754dba" class="section-panduan_teknis">
         <div class="padding-vertical padding-medium">
             <div class="page-padding">
             <div class="container-large">
@@ -256,7 +256,7 @@
             </div>
         </div>
     </section>
-    <section id="get-started" data-w-id="826d8ae9-aff4-35de-dcb8-b95a800821ff" class="section-kosakata">
+    <section id="section-kosakata" data-w-id="826d8ae9-aff4-35de-dcb8-b95a800821ff" class="section-kosakata">
         <div class="padding-vertical padding-xhuge">
             <div class="page-padding">
             <div class="container-large">

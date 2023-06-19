@@ -1,3 +1,8 @@
+@php
+    use App\Models\Profil;
+
+    $profil = Profil::first();
+@endphp
 <style>
     .wf-force-outline-none[tabindex="-1"]:focus {
         outline: none;
@@ -5,12 +10,12 @@
 </style>
 <meta charset="utf-8">
 <title>@yield('title', 'RevoUpedia - Pengetahuan Karir &amp; Skill Teknis | RevoU')</title>
-<meta content="Dapatkan informasi seluk-beluk profesi kekinian dan pengetahuan teknis skill digital, untuk kamu para calon profesional 🚀" name="description">
+<meta content="{{$profil->deskripsi}}" name="description">
 <meta content="@yield('title', 'RevoUpedia - Pengetahuan Karir &amp; Skill Teknis | RevoU')" property="og:title">
-<meta content="Dapatkan informasi seluk-beluk profesi kekinian dan pengetahuan teknis skill digital, untuk kamu para calon profesional 🚀" property="og:description">
+<meta content="{{$profil->deskripsi}}" property="og:description">
 <meta content="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62b49d739cc1e8c0e7aff555_open%20graph%20(1).png" property="og:image">
 <meta content="@yield('title', 'RevoUpedia - Pengetahuan Karir &amp; Skill Teknis | RevoU')" property="twitter:title">
-<meta content="Dapatkan informasi seluk-beluk profesi kekinian dan pengetahuan teknis skill digital, untuk kamu para calon profesional 🚀" property="twitter:description">
+<meta content="{{$profil->deskripsi}}" property="twitter:description">
 <meta content="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62b49d739cc1e8c0e7aff555_open%20graph%20(1).png" property="twitter:image">
 <meta property="og:type" content="website">
 <meta content="summary_large_image" name="twitter:card">
@@ -46,8 +51,8 @@
         n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
     }(window, document);
 </script>
-<link href="{{ asset('landing-page/assets/img/icon/61af164800e38cd504c60bad_RevoU favicon.svg') }}" rel="shortcut icon" type="image/x-icon">
-<link href="{{ asset('landing-page/assets/img/icon/61af164800e38c10e6c60bac_RevoU centered.svg') }}" rel="apple-touch-icon">
+<link href="{{ asset('images/razen-blog/logo/'.$profil->logo_kecil) }}" rel="shortcut icon" type="image/x-icon">
+<link href="{{ asset('images/razen-blog/logo/'.$profil->logo_kecil) }}" rel="apple-touch-icon">
 <script src="{{ asset('landing-page/assets/js/google.com_recaptcha_api.js') }}" type="text/javascript"></script>
 <!-- Google Tag Manager -->
 <script>
@@ -76,7 +81,6 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9">
 <script type="text/javascript" async="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/708347562/?random=1686291759166&amp;cv=11&amp;fst=1686291759166&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=45He3671&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Frevou.co%2Frevoupedia&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=RevoUpedia%20-%20Pengetahuan%20Karir%20%26%20Skill%20Teknis%20%7C%20RevoU&amp;auid=727028452.1686278340&amp;uaa=x86&amp;uab=64&amp;uafvl=Not.A%252FBrand%3B8.0.0.0%7CChromium%3B114.0.5735.110%7CGoogle%2520Chrome%3B114.0.5735.110&amp;uamb=0&amp;uap=Windows&amp;uapv=15.0.0&amp;uaw=0&amp;rfmt=3&amp;fmt=4"></script>
-<script type="text/javascript" async="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/353964379/?random=1686291759170&amp;cv=11&amp;fst=1686291759170&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=45He3671&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Frevou.co%2Frevoupedia&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=RevoUpedia%20-%20Pengetahuan%20Karir%20%26%20Skill%20Teknis%20%7C%20RevoU&amp;auid=727028452.1686278340&amp;uaa=x86&amp;uab=64&amp;uafvl=Not.A%252FBrand%3B8.0.0.0%7CChromium%3B114.0.5735.110%7CGoogle%2520Chrome%3B114.0.5735.110&amp;uamb=0&amp;uap=Windows&amp;uapv=15.0.0&amp;uaw=0&amp;rfmt=3&amp;fmt=4"></script>
 <script src="https://bat.bing.com/p/action/187024822.js" type="text/javascript" async="" data-ueto="ueto_47ac04145a"></script>
 <script charset="utf-8" src="https://analytics.tiktok.com/i18n/pixel/static/identify_738b3.js"></script>
 @yield('css')
