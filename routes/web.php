@@ -26,8 +26,9 @@ use App\Http\Controllers\Auth\RazenBlog\LoginController;
 Auth::routes(['register' => false, 'login' => false]);
 
 Route::get('/', [HomeController::class, 'beranda'])->name('beranda');
-Route::get('/panduan-karir', [HomeController::class, 'panduan_karir'])->name('panduan-karir');
-Route::get('/panduan-teknis', [HomeController::class, 'panduan_teknis'])->name('panduan-teknis');
+Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
+Route::get('/profesi', [HomeController::class, 'profesi'])->name('profesi');
+Route::get('/teknis', [HomeController::class, 'teknis'])->name('teknis');
 Route::get('/kosakata', [HomeController::class, 'kosakata'])->name('kosakata');
 
 Route::get('/login',[LoginController::class, 'showLoginForm'])->name('razen-blog.login');

@@ -12,14 +12,19 @@ class HomeController extends Controller
         return view('landing-page.beranda.index');
     }
 
-    public function panduan_karir()
+    public function berita()
     {
-        return view('landing-page.panduan-karir.index');
+        return view('landing-page.berita.index');
     }
 
-    public function panduan_teknis()
+    public function profesi()
     {
-        return view('landing-page.panduan-teknis.index');
+        return view('landing-page.profesi.index');
+    }
+
+    public function teknis()
+    {
+        return view('landing-page.teknis.index');
     }
 
     public function kosakata()

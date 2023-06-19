@@ -1,5 +1,5 @@
 @extends('landing-page.layouts.app')
-@section('title', 'Panduan Teknis | Razen Blog')
+@section('title', 'Teknis | Razen Blog')
 
 @section('header')
     <header id="top" data-w-id="2241d6d7-0a71-6df6-6b18-88715515709b" class="hero-revoupedia-list">
