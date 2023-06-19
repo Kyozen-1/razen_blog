@@ -1,7 +1,23 @@
 @extends('landing-page.layouts.app')
 @section('title', 'Beranda | Razen Blog')
 
+@section('css')
+    <style>
+        @media (min-width: 992px) {
+            .hero-bg-revoupedia{
+                background-image:url(https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac891b7c7a73ac6515e4cb_RevoUpedia%20Background%20Full.svg)
+            }
+        }
+    </style>
+@endsection
+
 @section('header')
+    @php
+        use App\Models\Profil;
+
+        $profil = Profil::first();
+    @endphp
+
     <header class="hero-bg-revoupedia">
         <div data-collapse="medium" data-animation="default" data-duration="200" data-easing="ease-in-out" data-easing2="ease-in-out" data-doc-height="1" role="banner" class="nav_component transparent w-nav">
             <div class="page-padding">
@@ -38,13 +54,7 @@
                                 <div data-w-id="afe5d203-46ea-2c08-056b-90192d429ed7" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="program-header_text-wrapper full-width">
                                     <div class="program_header-text text-weight-semibold">Dapatkan informasi seluk-beluk profesi kekinian dan pengetahuan teknis <em>skill</em> digital, untuk kamu para calon profesional 🚀 </div>
                                 </div>
-                                <div data-w-id="afe5d203-46ea-2c08-056b-90192d429eda" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="margin-top margin-medium is-custom-margin">
-                                    <a href="#get-started" id="apply" class="button is-hero-button program-hero-button no-hover w-button">mulai sekarang</a>
-                                </div>
                             </div>
-                        </div>
-                        <div id="w-node-_7130288d-2389-c43b-211c-f908c8701f75-1b121b0d" class="hero-block-empty">
-                            <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac91ce23f4fd1b3ae812cf_RevoUpedia%20Background.svg" loading="eager" alt="" class="hero-revoupedia-mobile">
                         </div>
                     </div>
                 </div>
