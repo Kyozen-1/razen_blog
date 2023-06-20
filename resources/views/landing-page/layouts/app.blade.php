@@ -2,6 +2,11 @@
 <html lang="en">
     <head>
         @include('landing-page.layouts.head')
+        <style>
+            .section-cta-panduan{
+                background-color:#fede3e;
+            }
+        </style>
     </head>
     <body>
         <div class="global-styles w-embed">
@@ -76,7 +81,7 @@
             <main class="page-wrapper">
                 @yield('header')
                 @yield('content')
-                <div data-w-id="ebde887b-e528-2468-97e1-a81c815cbc2f" class="section-cta-panduan position-relative">
+                <div data-w-id="ebde887b-e528-2468-97e1-a81c815cbc2f" class="section-cta-panduan position-relative" id="section-cta-panduan">
                     <div class="padding-vertical padding-xxlarge">
                         <div class="page-padding">
                         <div class="container-large">

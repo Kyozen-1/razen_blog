@@ -23,30 +23,17 @@
         <div class="page-padding-hero">
             <div class="container-large">
                 <div class="padding-vertical padding-xhuge relative">
-                    <div class="hero-icon-lright">
-                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9854f2b6038959089a63_hero-panduan-icon-05.svg" loading="lazy" alt="" class="hero-icon-image">
-                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9854444be31f1767f988_hero-panduan-icon-03.svg" loading="lazy" alt="" class="hero-icon-image">
-                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9854be399b81fbe335ce_hero-panduan-icon-01.svg" loading="lazy" alt="" class="hero-icon-image">
-                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9c3c1536834ebf3abdc8_hero-icon-block-2.svg" loading="lazy" alt="" class="hero-icon-tablet">
-                    </div>
-                    <div class="hero-icon-left">
-                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac98564ef09c75c3a41032_hero-panduan-icon-06.svg" loading="lazy" alt="" class="hero-icon-image">
-                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac985657b8593af1e7ebdd_hero-panduan-icon-04.svg" loading="lazy" alt="" class="hero-icon-image">
-                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac98545ae40f09c8af0173_hero-panduan-icon-02.svg" loading="lazy" alt="" class="hero-icon-image">
-                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9c3c99072dafe2d55873_hero-icon-block-1.svg" loading="lazy" alt="" class="hero-icon-tablet">
-                    </div>
                     <div class="program-header_center-content">
                         <div class="program-title_block">
-                            <div class="program-title_wrapper">
+                            <div class="program-title_wrapper" style="width: 100% !important;">
                                 <h1 style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="program_header_heading margin-bottom_1">Panduan Karir</h1>
                                 <div style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="program-title_copy">Panduan Karir ini menyediakan semua informasi yang kamu butuhkan untuk bantu pahami lebih detail karir impianmu!</div>
                             </div>
-                            <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62af357852fa1be72dd6ea45_hero-icon-mobile.svg" loading="lazy" alt="" class="hero-icon-mobile">
                         </div>
                         <div style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="filter-block">
-                            <a href="/revoupedia/panduan-karir" aria-current="page" class="filter-category state-active w-button w--current">panduan karir</a>
-                            <a href="/revoupedia/panduan-teknis" class="filter-category w-button">panduan teknis</a>
-                            <a id="w-node-_6edcaf65-92f8-1254-d977-87cbf07ecfc7-1b121a22" href="/revoupedia/kosakata" class="filter-category w-button">Kosakata</a>
+                            <a href="{{ route('berita') }}" aria-current="page" class="filter-category w-button">berita</a>
+                            <a href="{{ route('profesi') }}" class="filter-category state-active w-button w--current">profesi</a>
+                            <a href="{{ route('teknis') }}" class="filter-category w-button">teknis</a>
                         </div>
                     </div>
                 </div>

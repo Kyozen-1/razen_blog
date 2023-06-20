@@ -23,18 +23,6 @@
         <div class="page-padding-keyword">
             <div class="container-large">
                 <div class="padding-key-relative">
-                <div class="hero-icon-lright">
-                    <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9854f2b6038959089a63_hero-panduan-icon-05.svg" loading="lazy" alt="" class="hero-icon-image">
-                    <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9854444be31f1767f988_hero-panduan-icon-03.svg" loading="lazy" alt="" class="hero-icon-image">
-                    <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9854be399b81fbe335ce_hero-panduan-icon-01.svg" loading="lazy" alt="" class="hero-icon-image">
-                    <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9c3c1536834ebf3abdc8_hero-icon-block-2.svg" loading="lazy" alt="" class="hero-icon-tablet mb">
-                </div>
-                <div class="hero-icon-left">
-                    <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac98564ef09c75c3a41032_hero-panduan-icon-06.svg" loading="lazy" alt="" class="hero-icon-image">
-                    <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac985657b8593af1e7ebdd_hero-panduan-icon-04.svg" loading="lazy" alt="" class="hero-icon-image">
-                    <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac98545ae40f09c8af0173_hero-panduan-icon-02.svg" loading="lazy" alt="" class="hero-icon-image">
-                    <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62ac9c3c99072dafe2d55873_hero-icon-block-1.svg" loading="lazy" alt="" class="hero-icon-tablet mb">
-                </div>
                 <div class="header-keyword-block">
                     <div class="title-block-key">
                     <div class="title-block-wrapper">

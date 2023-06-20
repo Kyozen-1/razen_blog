@@ -79,7 +79,33 @@
                     </a>
                 </li>
                 <li>
-                    @if (request()->routeIs('razen-blog.landing-page.beranda.index'))
+                    @if (request()->routeIs('razen-blog.master-data.media-sosial.index'))
+                    <a href="#master_data" class="active">
+                    @else
+                    <a href="#master_data">
+                    @endif
+                        <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                        <span class="label">Master Data</span>
+                    </a>
+                    <ul id="master_data">
+                        <li>
+                            @if (request()->routeIs('razen-blog.master-data.media-sosial.index'))
+                                <a href="{{ route('razen-blog.master-data.media-sosial.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.master-data.media-sosial.index') }}">
+                            @endif
+                                <span class="label">Media Sosial</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    @if (request()->routeIs('razen-blog.landing-page.beranda.index') ||
+                    request()->routeIs('razen-blog.landing-page.berita.index') ||
+                    request()->routeIs('razen-blog.landing-page.profesi.index') ||
+                    request()->routeIs('razen-blog.landing-page.teknis.index') ||
+                    request()->routeIs('razen-blog.landing-page.kosakata.index') ||
+                    request()->routeIs('razen-blog.landing-page.panduan.index'))
                     <a href="#landing_page" class="active">
                     @else
                     <a href="#landing_page">
@@ -95,6 +121,51 @@
                                 <a href="{{ route('razen-blog.landing-page.beranda.index') }}">
                             @endif
                                 <span class="label">Beranda</span>
+                            </a>
+                        </li>
+                        <li>
+                            @if (request()->routeIs('razen-blog.landing-page.berita.index'))
+                                <a href="{{ route('razen-blog.landing-page.berita.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.landing-page.berita.index') }}">
+                            @endif
+                                <span class="label">Berita</span>
+                            </a>
+                        </li>
+                        <li>
+                            @if (request()->routeIs('razen-blog.landing-page.profesi.index'))
+                                <a href="{{ route('razen-blog.landing-page.profesi.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.landing-page.profesi.index') }}">
+                            @endif
+                                <span class="label">Profesi</span>
+                            </a>
+                        </li>
+                        <li>
+                            @if (request()->routeIs('razen-blog.landing-page.teknis.index'))
+                                <a href="{{ route('razen-blog.landing-page.teknis.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.landing-page.teknis.index') }}">
+                            @endif
+                                <span class="label">Teknis</span>
+                            </a>
+                        </li>
+                        <li>
+                            @if (request()->routeIs('razen-blog.landing-page.kosakata.index'))
+                                <a href="{{ route('razen-blog.landing-page.kosakata.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.landing-page.kosakata.index') }}">
+                            @endif
+                                <span class="label">Kosakata</span>
+                            </a>
+                        </li>
+                        <li>
+                            @if (request()->routeIs('razen-blog.landing-page.panduan.index'))
+                                <a href="{{ route('razen-blog.landing-page.panduan.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.landing-page.panduan.index') }}">
+                            @endif
+                                <span class="label">Panduan</span>
                             </a>
                         </li>
                     </ul>
