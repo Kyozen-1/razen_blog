@@ -42,7 +42,7 @@ class BerandaController extends Controller
                     $gambarBackgroundSize = public_path('images/landing-page/beranda/'.$gambarBackgroundName);
                     $gambarBackground->save($gambarBackgroundSize, 100);
                 } else {
-                    $gambarBackgroundName = $get_section_1['gambar'];
+                    $gambarBackgroundName = $get_section_1['gambar_background'];
                 }
             } else {
                 $gambarBackgroundExtension = $request->gambar_background->extension();

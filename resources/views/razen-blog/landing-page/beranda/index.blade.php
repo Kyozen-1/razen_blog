@@ -363,35 +363,7 @@
         $(document).ready(function(){
             $('.dropify').dropify();
 
-            CKEDITOR.replace('dekripsi_section_1',{
-                toolbarGroups: [{
-                        "name": "basicstyles",
-                        "groups": ["basicstyles"]
-                    },
-                    {
-                        "name": 'clipboard',
-                        "groups": ['Undo', 'Paste', 'Cut', 'Copy' ]
-                    },
-                    {
-                        "name" : 'editing',
-                        "groups" : ['Find', 'Replace', 'SelectAll']
-                    },
-                    {
-                        "name": "paragraph",
-                        "groups": ["list", "blocks"]
-                    },
-                    {
-                        "name": "document",
-                        "groups": ["mode"]
-                    },
-                    {
-                        "name": "styles",
-                        "groups": ["styles"]
-                    }
-                ],
-                // Remove the redundant buttons from toolbar groups defined above.
-                removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Source'
-            });
+            CKEDITOR.replace('dekripsi_section_1');
 
             CKEDITOR.replace('dekripsi_section_4',{
                 toolbarGroups: [{
