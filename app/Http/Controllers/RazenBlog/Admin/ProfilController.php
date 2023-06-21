@@ -14,6 +14,8 @@ use DataTables;
 use Carbon\Carbon;
 use Auth;
 use App\Models\Profil;
+use App\Models\PivotProfilMediaSosial;
+use App\Models\MasterMediaSosial;
 
 class ProfilController extends Controller
 {
@@ -21,8 +23,27 @@ class ProfilController extends Controller
     {
         $profil = Profil::first();
 
+        $media_sosial = MasterMediaSosial::pluck('nama', 'id');
+
+        $cek_pivot = PivotProfilMediaSosial::where('profil_id', $profil->id)->first();
+        $pivot_profil_media_sosial = [];
+        if($cek_pivot)
+        {
+            $pivot_profil_media_sosial = [
+                'status' => 'ada',
+                'pivot' => PivotProfilMediaSosial::where('profil_id', $profil->id)->get()
+            ];
+        } else {
+            $pivot_profil_media_sosial = [
+                'status' => 'tidak ada',
+                'pivot' => ''
+            ];
+        }
+
         return view('razen-blog.admin.profil.index', [
-            'profil' => $profil
+            'profil' => $profil,
+            'media_sosial' => $media_sosial,
+            'pivot_profil_media_sosial' => $pivot_profil_media_sosial
         ]);
     }
 
@@ -108,5 +129,48 @@ class ProfilController extends Controller
 
         Alert::success('Berhasil', 'Berhasil memperbaharui profil');
         return redirect()->route('razen-blog.admin.profil.index');
+    }
+
+    public function edit_media_sosial_profil(Request $request)
+    {
+        $errors = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+
+        if($errors -> fails())
+        {
+            return response()->json(['errors' => $errors->errors()->all()]);
+        }
+
+        $id = $request->id;
+        for ($i=0; $i < count($id); $i++) {
+            PivotProfilMediaSosial::find($id[$i])->delete();
+        }
+
+        return response()->json(['success' => 'Berhasil menghapus']);
+    }
+
+    public function tambah_media_sosial_profil(Request $request)
+    {
+        $errors = Validator::make($request->all(), [
+            'data_media_sosial' => 'required',
+        ]);
+
+        if($errors -> fails())
+        {
+            return response()->json(['errors' => $errors->errors()->all()]);
+        }
+
+        $dataMediaSosial = $request->data_media_sosial;
+
+        for ($i=0; $i < count($dataMediaSosial); $i++) {
+            $pivot_profil_media_sosial = new PivotProfilMediaSosial;
+            $pivot_profil_media_sosial->media_sosial_id = $dataMediaSosial[$i]['master_media_sosial_id'];
+            $pivot_profil_media_sosial->profil_id = $dataMediaSosial[$i]['profil_id'];
+            $pivot_profil_media_sosial->tautan = $dataMediaSosial[$i]['tautan'];
+            $pivot_profil_media_sosial->save();
+        }
+
+        return response()->json(['success' => 'Data media sosial profil berhasil ditambahkan!']);
     }
 }

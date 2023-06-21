@@ -23,6 +23,8 @@ Route::prefix('razen-blog')->group(function(){
             Route::get('/edit/{id}',[ProfilController::class, 'edit']);
             Route::post('/update',[ProfilController::class, 'update'])->name('razen-blog.admin.profil.update');
             Route::get('/destroy/{id}',[ProfilController::class, 'destroy']);
+            Route::post('/edit-media-sosial-profil', [ProfilController::class, 'edit_media_sosial_profil'])->name('razen-blog.admin.profil.edit-media-sosial-profil');
+            Route::post('/tambah-media-sosial-profil', [ProfilController::class, 'tambah_media_sosial_profil'])->name('razen-blog.admin.profil.tambah-media-sosial-profil');
         });
     });
 
