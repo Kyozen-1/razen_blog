@@ -79,7 +79,8 @@
                     </a>
                 </li>
                 <li>
-                    @if (request()->routeIs('razen-blog.master-data.media-sosial.index'))
+                    @if (request()->routeIs('razen-blog.master-data.media-sosial.index') ||
+                    request()->routeIs('razen-blog.master-data.kategori-konten.index'))
                     <a href="#master_data" class="active">
                     @else
                     <a href="#master_data">
@@ -95,6 +96,15 @@
                                 <a href="{{ route('razen-blog.master-data.media-sosial.index') }}">
                             @endif
                                 <span class="label">Media Sosial</span>
+                            </a>
+                        </li>
+                        <li>
+                            @if (request()->routeIs('razen-blog.master-data.kategori-konten.index'))
+                                <a href="{{ route('razen-blog.master-data.kategori-konten.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.master-data.kategori-konten.index') }}">
+                            @endif
+                                <span class="label">Kategori Konten</span>
                             </a>
                         </li>
                     </ul>
@@ -166,6 +176,27 @@
                                 <a href="{{ route('razen-blog.landing-page.panduan.index') }}">
                             @endif
                                 <span class="label">Panduan</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    @if (request()->routeIs('razen-blog.managemen-akun.penulis.index'))
+                    <a href="#managemen_akun" class="active">
+                    @else
+                    <a href="#managemen_akun">
+                    @endif
+                        <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                        <span class="label">Manageme Akun</span>
+                    </a>
+                    <ul id="managemen_akun">
+                        <li>
+                            @if (request()->routeIs('razen-blog.managemen-akun.penulis.index'))
+                                <a href="{{ route('razen-blog.managemen-akun.penulis.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.managemen-akun.penulis.index') }}">
+                            @endif
+                                <span class="label">Penulis</span>
                             </a>
                         </li>
                     </ul>

@@ -75,6 +75,9 @@ class Handler extends ExceptionHandler
             case 'razen_blog':
                 $login = 'razen-blog.login';
                 break;
+            case 'penulis':
+                $login = 'penulis.login';
+                break;
             default:
                 $login = 'razen-blog.login';
                 break;

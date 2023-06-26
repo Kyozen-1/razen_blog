@@ -2,6 +2,13 @@
 @section('title', 'Berita | Razen Blog')
 
 @section('header')
+    @php
+        use App\Models\LandingPageBerita;
+
+        $beranda = LandingPageBerita::first();
+
+        $section_1 = json_decode($beranda->section_1, true);
+    @endphp
     <header id="top" data-w-id="2241d6d7-0a71-6df6-6b18-88715515709b" class="hero-revoupedia-list">
         <div data-collapse="medium" data-animation="default" data-duration="200" data-easing="ease-in-out" data-easing2="ease-in-out" data-doc-height="1" role="banner" class="nav_component transparent w-nav">
             <div class="page-padding">
@@ -26,8 +33,8 @@
                     <div class="program-header_center-content">
                         <div class="program-title_block">
                             <div class="program-title_wrapper" style="width: 100% !important;">
-                                <h1 style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="program_header_heading margin-bottom_1">Panduan Karir</h1>
-                                <div style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="program-title_copy">Panduan Karir ini menyediakan semua informasi yang kamu butuhkan untuk bantu pahami lebih detail karir impianmu!</div>
+                                <h1 style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="program_header_heading margin-bottom_1">{{$section_1?$section_1['judul']:'' }}</h1>
+                                <div style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="program-title_copy">{{$section_1?$section_1['deskripsi']:'' }}</div>
                             </div>
                         </div>
                         <div style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="filter-block">

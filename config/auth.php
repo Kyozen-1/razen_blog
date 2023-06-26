@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'penulis' => [
+            'driver' => 'session',
+            'provider' => 'penulises',
+        ],
     ],
 
     /*
@@ -68,6 +73,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'penulises' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AkunPenulis::class,
         ],
 
         // 'users' => [

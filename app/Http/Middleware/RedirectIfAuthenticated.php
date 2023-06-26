@@ -26,6 +26,11 @@ class RedirectIfAuthenticated
                 {
                     return redirect()->route('razen-blog.admin.dashboard.index');
                 }
+            case 'penulis':
+                if(Auth::guard($guard)->check())
+                {
+                    return redirect()->route('razen-blog.penulis.dashboard.index');
+                }
         }
 
         return $next($request);

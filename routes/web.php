@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPage\HomeController;
 use App\Http\Controllers\Auth\RazenBlog\LoginController;
+use App\Http\Controllers\Auth\RazenBlog\PenulisLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::get('/kosakata', [HomeController::class, 'kosakata'])->name('kosakata');
 Route::get('/login',[LoginController::class, 'showLoginForm'])->name('razen-blog.login');
 Route::post('/login', [LoginController::class, 'login'])->name('razen-blog.login.submit');
 Route::get('/logout', [LoginController::class, 'logout'])->name('razen-blog.logout');
+
+Route::get('/penulis/login',[PenulisLoginController::class, 'showLoginForm'])->name('penulis.login');
+Route::post('/penulis/login', [PenulisLoginController::class, 'login'])->name('penulis.login.submit');
+Route::get('/penulis/logout', [PenulisLoginController::class, 'logout'])->name('penulis.logout');
 
 Route::group(['middleware' => 'auth:razen_blog'], function(){
     @include('razen-blog.php');

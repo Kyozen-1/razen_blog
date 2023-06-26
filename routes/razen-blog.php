@@ -1,13 +1,18 @@
 <?php
 use App\Http\Controllers\RazenBlog\Admin\DashboardController;
+// Admin
 use App\Http\Controllers\RazenBlog\Admin\ProfilController;
+// Landing Page
 use App\Http\Controllers\RazenBlog\LandingPage\BerandaController;
 use App\Http\Controllers\RazenBlog\LandingPage\BeritaController;
 use App\Http\Controllers\RazenBlog\LandingPage\ProfesiController;
 use App\Http\Controllers\RazenBlog\LandingPage\TeknisController;
 use App\Http\Controllers\RazenBlog\LandingPage\KosakataController;
 use App\Http\Controllers\RazenBlog\LandingPage\PanduanController;
+// Master Data
 use App\Http\Controllers\RazenBlog\MasterData\MediaSosialController;
+use App\Http\Controllers\RazenBlog\MasterData\KategoriKontenController;
+use App\Http\Controllers\RazenBlog\ManagemenAkun\PenulisController;
 
 Route::prefix('razen-blog')->group(function(){
     Route::prefix('admin')->group(function(){
@@ -81,6 +86,28 @@ Route::prefix('razen-blog')->group(function(){
             Route::get('/edit/{id}',[MediaSosialController::class, 'edit'])->name('razen-blog.master-data.media-sosial.edit');
             Route::post('/update',[MediaSosialController::class, 'update'])->name('razen-blog.master-data.media-sosial.update');
             Route::get('/destroy/{id}',[MediaSosialController::class, 'destroy'])->name('razen-blog.master-data.media-sosial.destroy');
+        });
+
+        Route::prefix('kategori-konten')->group(function(){
+            Route::get('/', [KategoriKontenController::class, 'index'])->name('razen-blog.master-data.kategori-konten.index');
+            Route::get('/detail/{id}', [KategoriKontenController::class, 'show'])->name('razen-blog.master-data.kategori-konten.show');
+            Route::post('/',[KategoriKontenController::class, 'store'])->name('razen-blog.master-data.kategori-konten.store');
+            Route::get('/edit/{id}',[KategoriKontenController::class, 'edit'])->name('razen-blog.master-data.kategori-konten.edit');
+            Route::post('/update',[KategoriKontenController::class, 'update'])->name('razen-blog.master-data.kategori-konten.update');
+            Route::get('/destroy/{id}',[KategoriKontenController::class, 'destroy'])->name('razen-blog.master-data.kategori-konten.destroy');
+        });
+    });
+
+    Route::prefix('managemen-akun')->group(function(){
+        Route::prefix('penulis')->group(function(){
+            Route::get('/', [PenulisController::class, 'index'])->name('razen-blog.managemen-akun.penulis.index');
+            Route::get('/detail/{id}', [PenulisController::class, 'show'])->name('razen-blog.managemen-akun.penulis.show');
+            Route::post('/',[PenulisController::class, 'store'])->name('razen-blog.managemen-akun.penulis.store');
+            Route::get('/edit/{id}',[PenulisController::class, 'edit'])->name('razen-blog.managemen-akun.penulis.edit');
+            Route::post('/update',[PenulisController::class, 'update'])->name('razen-blog.managemen-akun.penulis.update');
+            Route::get('/destroy/{id}',[PenulisController::class, 'destroy'])->name('razen-blog.managemen-akun.penulis.destroy');
+            Route::post('/update/password',[PenulisController::class, 'update_password'])->name('razen-blog.managemen-akun.penulis.update.password');
+            Route::get('/update/status-penulis/{id}',[PenulisController::class, 'update_status_penulis'])->name('razen-blog.managemen-akun.penulis.update.status-penulis');
         });
     });
 });

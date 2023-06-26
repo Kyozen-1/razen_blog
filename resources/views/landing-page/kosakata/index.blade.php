@@ -2,6 +2,13 @@
 @section('title', 'Kosakata | Razen Blog')
 
 @section('header')
+    @php
+        use App\Models\LandingPageKosakata;
+
+        $beranda = LandingPageKosakata::first();
+
+        $section_1 = json_decode($beranda->section_1, true);
+    @endphp
     <header id="top" data-w-id="f7a82cd5-7ab9-54ac-433f-6597aad7edab" class="hero-keyword">
         <div data-collapse="medium" data-animation="default" data-duration="200" data-easing="ease-in-out" data-easing2="ease-in-out" data-doc-height="1" role="banner" class="nav_component transparent w-nav">
             <div class="page-padding">
@@ -26,8 +33,8 @@
                 <div class="header-keyword-block">
                     <div class="title-block-key">
                     <div class="title-block-wrapper">
-                        <h1 style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="program_header_heading margin-bottom_1">Kosakata</h1>
-                        <div style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="program-title_copy">Kuasai definisi dan contoh dari istilah-istilah digital marketing, data analytics, product management, dan software engineering di sini!</div>
+                        <h1 style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="program_header_heading margin-bottom_1">{{$section_1?$section_1['judul']:'' }}</h1>
+                        <div style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="program-title_copy">{{$section_1?$section_1['deskripsi']:'' }}</div>
                     </div>
                     <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62af357852fa1be72dd6ea45_hero-icon-mobile.svg" loading="lazy" alt="" class="hero-icon-mobile hidden">
                     </div>
