@@ -5,8 +5,8 @@
 @endphp
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>@yield('title', 'Razen Blog | Penulis |  Login')</title>
-<meta name="description" content="Login Page" />
+<title>@yield('title', 'Penulis | Dashboard')</title>
+<meta name="description" content="Panel Penulis Razen Blog" />
 <!-- Favicon Tags Start -->
 <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset('acorn/acorn-elearning-portal/img/favicon/apple-touch-icon-57x57.png') }}" />
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('acorn/acorn-elearning-portal/img/favicon/apple-touch-icon-114x114.png') }}" />
@@ -38,6 +38,8 @@
 <!-- Vendor Styles Start -->
 <link rel="stylesheet" href="{{ asset('acorn/acorn-elearning-portal/css/vendor/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('acorn/acorn-elearning-portal/css/vendor/OverlayScrollbars.min.css') }}" />
+
+<link rel="stylesheet" href="{{ asset('acorn/acorn-elearning-portal/css/vendor/glide.core.min.css') }}" />
 
 <!-- Vendor Styles End -->
 <!-- Template Base Styles Start -->

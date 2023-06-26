@@ -40,6 +40,12 @@ Route::get('/penulis/login',[PenulisLoginController::class, 'showLoginForm'])->n
 Route::post('/penulis/login', [PenulisLoginController::class, 'login'])->name('penulis.login.submit');
 Route::get('/penulis/logout', [PenulisLoginController::class, 'logout'])->name('penulis.logout');
 
-Route::group(['middleware' => 'auth:razen_blog'], function(){
-    @include('razen-blog.php');
+Route::prefix('razen-blog')->group(function(){
+    Route::group(['middleware' => 'auth:razen_blog'], function(){
+        @include('razen-blog.php');
+    });
+
+    Route::group(['middleware' => 'auth:penulis'], function(){
+        @include('penulis.php');
+    });
 });

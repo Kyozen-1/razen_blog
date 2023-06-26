@@ -5,7 +5,7 @@ namespace App\Http\Controllers\RazenBlog\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
