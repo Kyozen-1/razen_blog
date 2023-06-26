@@ -1,5 +1,5 @@
 @extends('penulis.layouts.app')
-@section('title', 'Razen Blog | Dashboard')
+@section('title', 'Razen Blog | Penulis | Dashboard')
 
 @section('content')
 <!-- Title and Top Buttons Start -->

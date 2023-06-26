@@ -13,4 +13,9 @@ class Penulis extends Model
     {
         return $this->hasOne('App\Models\AkunPenulis', 'penulis_id');
     }
+
+    public function pivot_penulis_media_sosial()
+    {
+        return $this->hasMany('App\Models\PivotPenulisMediaSosial', 'penulis_id');
+    }
 }

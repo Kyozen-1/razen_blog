@@ -15,4 +15,8 @@ class MasterMediaSosial extends Model
     {
         return $this->hasMany('App\Models\PivotProfilMediaSosial', 'media_sosial_id');
     }
+    public function pivot_penulis_media_sosial()
+    {
+        return $this->hasMany('App\Models\PivotPenulisMediaSosial', 'media_sosial_id');
+    }
 }

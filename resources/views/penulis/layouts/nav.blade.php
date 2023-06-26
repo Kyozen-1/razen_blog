@@ -68,6 +68,16 @@
                         <span class="label">Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    @if (request()->routeIs('razen-blog.penulis.profil.index'))
+                        <a href="{{ route('razen-blog.penulis.profil.index') }}" class="active">
+                    @else
+                        <a href="{{ route('razen-blog.penulis.profil.index') }}">
+                    @endif
+                        <i data-acorn-icon="home-garage" class="icon" data-acorn-size="18"></i>
+                        <span class="label">Profil</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Menu End -->
