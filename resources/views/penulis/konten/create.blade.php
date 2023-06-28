@@ -70,11 +70,26 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-8 col-12">
-                        <div class="mb-3 position-relative form-group">
-                            <label for="kategori_konten_id" class="form-label">Kategori Konten</label>
-                            <select name="kategori_konten_id" id="kategori_konten_id" class="form-control" required>
-                                <option value="">--- Pilih ---</option>
-                            </select>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="mb-3 position-relative form-group">
+                                    <label for="tipe_konten" class="form-label">Tipe Konten</label>
+                                    <select id="tipe_konten" class="form-control" required>
+                                        <option value="">--- Pilih ---</option>
+                                        <option value="berita">Berita</option>
+                                        <option value="profesi">Profesi</option>
+                                        <option value="teknis">Teknis</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3 position-relative form-group">
+                                    <label for="kategori_konten_id" class="form-label">Kategori Konten</label>
+                                    <select name="kategori_konten_id" id="kategori_konten_id" class="form-control" disabled required>
+                                        <option value="">--- Pilih ---</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3 position-relative form-group">
                             <label for="judul" class="form-label">Judul</label>
@@ -123,8 +138,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group position-relative">
-                            <label for="" class="form-label">Konten Terkait</label>
-                            <select name="konten_terkait[]" id="konten_terkait" class="form-control" multiple required></select>
+                            <label for="" class="form-label">Konten Terkait (optional)</label>
+                            <select name="konten_terkait[]" id="konten_terkait" class="form-control" multiple >
+                                @foreach ($kontens as $item)
+                                    <option value="{{$item->id}}">{{$item->judu}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -166,10 +185,39 @@
     <script>
         $(document).ready(function(){
             $('.dropify').dropify();
+            $('#tipe_konten').select2();
             $('#kategori_konten_id').select2();
             $('#konten_terkait').select2();
             CKEDITOR.replace('deskripsi_overview');
             CKEDITOR.config.allowedContent = true;
+        });
+
+        $('#tipe_konten').change(function(){
+            var value = $(this).val();
+            if(value != '')
+            {
+                $.ajax({
+                    url: "{{ route('razen-blog.penulis.konten.select.kategori-konten') }}",
+                    method: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        tipe_konten: value
+                    },
+                    success: function(response)
+                    {
+                        $('#kategori_konten_id').empty();
+                        $('#kategori_konten_id').append('<option value="">--- Pilih ---</option>');
+                        $('#kategori_konten_id').prop('disabled', false);
+                        $.each(response, function(id, nama){
+                            $('#kategori_konten_id').append(new Option(nama, id));
+                        });
+                    }
+                });
+            } else {
+                $('#kategori_konten_id').empty();
+                $('#kategori_konten_id').append('<option value="">--- Pilih ---</option>');
+                $('#kategori_konten_id').prop('disabled', true);
+            }
         });
 
         $('#status_tambah_sub_judul').change(function(){
