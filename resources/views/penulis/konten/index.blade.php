@@ -56,6 +56,7 @@
         </div>
     </div>
     <!-- Content End -->
+
 @endsection
 
 @section('js')
