@@ -6,10 +6,10 @@
 <div id="nav" class="nav-container d-flex">
     <div class="nav-content d-flex">
         <!-- Logo Start -->
-        <div class="logo position-relative">
-            <a href="index.html">
+        <div class=" position-relative mb-5">
+            <a href="{{ route('razen-blog.penulis.dashboard.index') }}">
             <!-- Logo can be added directly -->
-            <img src="{{ asset('images/razen-blog/logo/642b9aa063e73-230404.png') }}" alt="logo" />
+            <img src="{{ asset('images/razen-blog/logo/'.$profil->logo) }}" alt="logo" height="30rem" />
 
             <!-- Or added via css to provide different ones for different color themes -->
             {{-- <div class="img"></div> --}}
@@ -20,8 +20,8 @@
         <!-- User Menu Start -->
         <div class="user-container d-flex">
             <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="profile" alt="profile" src="{{ asset('acorn/acorn-elearning-portal/img/profile/profile-3.webp') }}" height="1rem"/>
-            <div class="name">{{$profil->nama}}</div>
+            <img class="profile" alt="profile" src="{{ asset('images/razen-blog/foto/'.Auth::user()->penulis->foto) }}" height="1rem"/>
+            <div class="name">{{Auth::user()->name}}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-end user-menu wide">
             <div class="row mb-3 ms-0 me-0">
@@ -76,6 +76,16 @@
                     @endif
                         <i data-acorn-icon="home-garage" class="icon" data-acorn-size="18"></i>
                         <span class="label">Profil</span>
+                    </a>
+                </li>
+                <li>
+                    @if (request()->routeIs('razen-blog.penulis.konten.index'))
+                        <a href="{{ route('razen-blog.penulis.konten.index') }}" class="active">
+                    @else
+                        <a href="{{ route('razen-blog.penulis.konten.index') }}">
+                    @endif
+                        <i data-acorn-icon="home-garage" class="icon" data-acorn-size="18"></i>
+                        <span class="label">Konten</span>
                     </a>
                 </li>
             </ul>
