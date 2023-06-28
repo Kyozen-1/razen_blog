@@ -23,7 +23,23 @@ class KontenController extends Controller
 {
     public function index()
     {
-        return view('penulis.konten.index');
+        $kontens = Konten::where('penulis_id', Auth::user()->penulis_id)->get()
+                    ->map(function($data){
+                        return [
+                            'id' => $data->id,
+                            'kategori_konten' => $data->kategori_konten->nama,
+                            'judul' => $data->judul,
+                            'deskripsi_judul' => $data->deskripsi_judul,
+                            'deskripsi_overview' => $data->deskripsi_overview,
+                            'gambar_mini' => $data->gambar_mini,
+                            'tgl' => $data->tgl,
+                            'pivot_sub_judul_konten' => $data->pivot_sub_judul_konten,
+                            'pivot_konten_terkait' => $data->parent_pivot_konten_terkait
+                        ];
+                    });
+        return view('penulis.konten.index', [
+            'kontens' => $kontens
+        ]);
     }
 
     public function create()
@@ -97,5 +113,13 @@ class KontenController extends Controller
 
         Alert::success('Berhasil', 'Berhasil menambahkan konten');
         return redirect()->route('razen-blog.penulis.konten.index');
+    }
+
+    public function detail($id)
+    {
+        $konten = Konten::find($id);
+        return view('penulis.konten.detail', [
+            'konten' => $konten
+        ]);
     }
 }
