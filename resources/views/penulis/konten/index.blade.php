@@ -73,11 +73,15 @@
                                         <div class="col-12 mb-3">
                                             <p>{{$item['deskripsi_judul']}}</p>
                                         </div>
+                                        <hr>
                                         <div class="col-auto pe-3">
                                             <a href="{{ route('razen-blog.penulis.konten.detail', ['id'=>$item['id']]) }}" class="btn btn-info btn-icon waves-effect waves-light"><i class="fas fa-eye"></i></a>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-auto pe-3">
                                             <a href="{{ route('razen-blog.penulis.konten.edit', ['id'=>$item['id']]) }}" class="btn btn-warning btn-icon waves-effect waves-light"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                        <div class="col-auto pe-3">
+                                            <a href="{{ route('razen-blog.penulis.konten.delete', ['id'=>$item['id']]) }}" class="btn btn-danger btn-icon waves-effect waves-light"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </div>
                                 </div>

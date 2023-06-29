@@ -1,5 +1,5 @@
 @extends('penulis.layouts.app')
-@section('title', 'Razen Blog | Penulis | Konten | Create')
+@section('title', 'Razen Blog | Penulis | Konten | Edit')
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -35,13 +35,13 @@
         <div class="row">
         <!-- Title Start -->
         <div class="col-12 col-md-7">
-            <h1 class="mb-0 pb-0 display-4" id="title">Razen Blog | Penulis | Konten | Create</h1>
+            <h1 class="mb-0 pb-0 display-4" id="title">Razen Blog | Penulis | Konten | Edit</h1>
             <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
                 <ul class="breadcrumb pt-0">
                     <li class="breadcrumb-item"><a href="{{ route('razen-blog.penulis.dashboard.index') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="#">Penulis</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('razen-blog.penulis.konten.index') }}">Konten</a></li>
-                    <li class="breadcrumb-item"><a href="#">Create</a></li>
+                    <li class="breadcrumb-item"><a href="#">Edit</a></li>
                 </ul>
             </nav>
         </div>
@@ -50,12 +50,11 @@
     </div>
     <!-- Title and Top Buttons End -->
 
-    <!-- Content Start -->
     <div class="card mb-3">
         <div class="card-body">
             <div class="row">
                 <div class="col-6">
-                    <label for="" class="small-title">Tambah Konten</label>
+                    <label for="" class="small-title">Edit Konten</label>
                 </div>
                 <div class="col-6" style="text-align: right;">
                     <a href="{{ route('razen-blog.penulis.konten.index') }}" class="btn btn-icon btn-danger waves-effect waves-light"><i class="fas fa-arrow-left"></i></a>
@@ -64,8 +63,9 @@
         </div>
     </div>
 
-    <form action="{{ route('razen-blog.penulis.konten.store') }}" novalidate="novalidate" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('razen-blog.penulis.konten.update') }}" novalidate="novalidate" method="POST" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="konten_id" value="{{$konten->id}}">
         <div class="card mb-3">
             <div class="card-body">
                 <div class="row">
@@ -76,9 +76,9 @@
                                     <label for="tipe_konten" class="form-label">Tipe Konten</label>
                                     <select id="tipe_konten" class="form-control" required>
                                         <option value="">--- Pilih ---</option>
-                                        <option value="berita">Berita</option>
-                                        <option value="profesi">Profesi</option>
-                                        <option value="teknis">Teknis</option>
+                                        <option value="berita" @if($konten->kategori_konten->tipe_konten == 'berita') selected @endif>Berita</option>
+                                        <option value="profesi" @if($konten->kategori_konten->tipe_konten == 'profesi') selected @endif>Profesi</option>
+                                        <option value="teknis" @if($konten->kategori_konten->tipe_konten == 'teknis') selected @endif>Teknis</option>
                                     </select>
                                 </div>
                             </div>
@@ -93,27 +93,72 @@
                         </div>
                         <div class="mb-3 position-relative form-group">
                             <label for="judul" class="form-label">Judul</label>
-                            <input type="text" class="form-control" id="judul" name="judul" required>
+                            <input type="text" class="form-control" id="judul" name="judul" value="{{$konten->judul}}" required>
                         </div>
                         <div class="mb-3 position-relative form-group">
                             <label for="deskripsi_judul" class="form-label">Deskripsi Judul</label>
-                            <textarea name="deskripsi_judul" id="deskripsi_judul" rows="5" class="form-control" required></textarea>
+                            <textarea name="deskripsi_judul" id="deskripsi_judul" rows="5" class="form-control" required>{{$konten->deskripsi_judul}}</textarea>
                         </div>
                         <div class="mb-3 position-relative form-group">
                             <label for="deskripsi_overview" class="form-label">Deskripsi Overview</label>
-                            <textarea name="deskripsi_overview" id="deskripsi_overview" rows="5" class="form-control" required></textarea>
+                            <textarea name="deskripsi_overview" id="deskripsi_overview" rows="5" class="form-control" required>{{$konten->deskripsi_overview}}</textarea>
                         </div>
                     </div>
                     <div class="col-md-4 col-12">
                         <div class="mb-3 position-relative form-group">
                             <label for="gambar_mini" class="control-label">Gambar Mini</label>
-                            <input type="file" class="dropify" name="gambar_mini" id="gambar_mini" data-height="150" data-allowed-file-extensions="png jpg jpeg webp" data-show-errors="true">
+                            <input type="file" class="dropify" name="gambar_mini" id="gambar_mini" data-height="150" data-allowed-file-extensions="png jpg jpeg webp" data-show-errors="true" data-default-file="{{ asset('images/razen-blog/konten/'.$konten->gambar_mini) }}">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="small-title">Edit Sub Judul</h4>
+                        <table class="table table-bordered dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th width="5%">No</th>
+                                    <th width="35%">Judul</th>
+                                    <th width="50%">Deskripsi</th>
+                                    <th width="10%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($konten->pivot_sub_judul_konten)
+                                    @php
+                                        $a = 1;
+                                        $index_a = 0;
+                                    @endphp
+                                    @foreach ($konten->pivot_sub_judul_konten as $sub_judul)
+                                        <tr>
+                                            <td class="text-left">
+                                                {{$a++}}
+                                                <input type="hidden" name="edit_pivot_sub_judul_konten[{{$index_a}}][pivot_sub_judul_konten_id]" value="{{$sub_judul->id}}">
+                                            </td>
+                                            <td class="text-left">
+                                                <input type="text" class="form-control" name="edit_pivot_sub_judul_konten[{{$index_a}}][judul]" value="{{$sub_judul->judul}}">
+                                            </td>
+                                            <td class="text-left">
+                                                <textarea name="edit_pivot_sub_judul_konten[{{$index_a}}][deskripsi]" id="edit_pivot_sub_judul_konten_{{$sub_judul->id}}_deskripsi" rows="5" class="form-control">{{$sub_judul->deskripsi}}</textarea>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-danger hapus-pivot-sub-judul-konten" type="button" aria-hidden="true" data-id="{{$sub_judul->id}}" title="Hapus">Hapus</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="hapus_id_pivot" id="hapus_id_pivot">
         <div class="card mb-3" id="status_tambah_sub_judul_card">
             <div class="card-body">
                 <div class="row mb-3">
@@ -162,7 +207,6 @@
             </div>
         </div>
     </form>
-    <!-- Content End -->
 @endsection
 
 @section('js')
@@ -183,12 +227,49 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js" integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        var kategori_tipe_konten = "{{ $konten->kategori_konten->tipe_konten }}";
+        var kategori_konten_id = "{{ $konten->kategori_konten_id}}";
+        if(kategori_tipe_konten != "")
+        {
+            $.ajax({
+                url: "{{ route('razen-blog.penulis.konten.select.kategori-konten') }}",
+                method: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    tipe_konten: kategori_tipe_konten
+                },
+                success: function(response)
+                {
+                    $('#kategori_konten_id').empty();
+                    $('#kategori_konten_id').append('<option value="">--- Pilih ---</option>');
+                    $('#kategori_konten_id').prop('disabled', false);
+                    $.each(response, function(id, nama){
+                        $('#kategori_konten_id').append(new Option(nama, id));
+                    });
+
+                    if(kategori_konten_id != "")
+                    {
+                        $("[name='kategori_konten_id']").val(kategori_konten_id).trigger('change');
+                    }
+                }
+            });
+        }
+
         $(document).ready(function(){
             $('.dropify').dropify();
             $('#tipe_konten').select2();
             $('#kategori_konten_id').select2();
             $('#konten_terkait').select2();
+            $('#konten_terkait').select2('val', @php $pivot_konten_terkait @endphp);
+
             CKEDITOR.replace('deskripsi_overview');
+
+            @if ($konten->pivot_sub_judul_konten)
+                @foreach ($konten->pivot_sub_judul_konten as $sub_judul)
+                    CKEDITOR.replace("edit_pivot_sub_judul_konten_{{$sub_judul->id}}_deskripsi");
+                @endforeach
+            @endif
+
             CKEDITOR.config.allowedContent = true;
         });
 
@@ -297,6 +378,16 @@
                 count_sub_judul = 0;
             }
             $('#batas_tambah_sub_judul').next('div').remove();
+        });
+
+        var ID_PIVOT = [];
+
+        $('.hapus-pivot-sub-judul-konten').click(function() {
+            var id = $(this).attr('data-id');
+            var _t = $(this);
+            ID_PIVOT.push(id);
+            $('#hapus_id_pivot').val(ID_PIVOT);
+            _t.parent().parent().remove();
         });
     </script>
 @endsection

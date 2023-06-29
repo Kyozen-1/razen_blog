@@ -28,5 +28,7 @@ Route::prefix('penulis')->group(function(){
         Route::post('/select/kategori-konten', [KontenController::class, 'select_kategori_konten'])->name('razen-blog.penulis.konten.select.kategori-konten');
         Route::get('/detail/{id}', [KontenController::class, 'detail'])->name('razen-blog.penulis.konten.detail');
         Route::get('/edit/{id}', [KontenController::class, 'edit'])->name('razen-blog.penulis.konten.edit');
+        Route::get('/delete/{id}', [KontenController::class, 'delete'])->name('razen-blog.penulis.konten.delete');
+        Route::post('/update', [KontenController::class, 'update'])->name('razen-blog.penulis.konten.update');
     });
 });

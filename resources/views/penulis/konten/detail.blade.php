@@ -66,12 +66,12 @@
                         <p>
                             {{$konten->deskripsi_judul}}
                         </p>
-                        <h6 class="mb-3 mt-5 text-alternate">Overview</h6>
+                        <h4 class="mb-3 mt-5 small-title">Overview</h4>
                         {!! $konten->deskripsi_overview !!}
                         <hr>
                         @if ($konten->pivot_sub_judul_konten)
                             @foreach ($konten->pivot_sub_judul_konten as $sub_judul)
-                                <h6 class="mb-3 mt-5 text-alternate">{{$sub_judul->judul}}</h6>
+                                <h4 class="mb-3 mt-5 small-title">{{$sub_judul->judul}}</h4>
                                 {!! $sub_judul->deskripsi !!}
                             @endforeach
                         @endif
@@ -99,9 +99,9 @@
                 </div>
             </div>
             <h4 class="small-title">Terkait</h4>
-            @if ($konten->pivot_konten_terkait)
+            @if ($konten->parent_pivot_konten_terkait)
                 <div class="row mb-n2">
-                    @foreach ($konten->pivot_konten_terkait as $konten_terkait)
+                    @foreach ($konten->parent_pivot_konten_terkait as $konten_terkait)
                         <div class="col-12 col-md-6 col-xl-12">
                             <div class="card sh-11 sh-sm-14 mb-2">
                                 <div class="row g-0 h-100">
