@@ -1,5 +1,5 @@
-@extends('penulis.layouts.app')
-@section('title', 'Razen Blog | Penulis | Konten')
+@extends('razen-blog.layouts.app')
+@section('title', 'Razen Blog | Konten')
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -35,12 +35,11 @@
         <div class="row">
         <!-- Title Start -->
         <div class="col-12 col-md-7">
-            <h1 class="mb-0 pb-0 display-4" id="title">Razen Blog | Penulis | Konten</h1>
+            <h1 class="mb-0 pb-0 display-4" id="title">Razen Blog | Konten</h1>
             <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
                 <ul class="breadcrumb pt-0">
-                    <li class="breadcrumb-item"><a href="{{ route('razen-blog.penulis.dashboard.index') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">Penulis</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('razen-blog.penulis.konten.index') }}">Konten</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('razen-blog.admin.dashboard.index') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('razen-blog.admin.konten.index') }}">Konten</a></li>
                 </ul>
             </nav>
         </div>
@@ -52,7 +51,7 @@
     <!-- Content Start -->
     <div class="row mb-3">
         <div class="col-12" style="text-align:right">
-            <a class="btn btn-outline-primary waves-effect waves-light mr-2 item_create" title="Tambah Data" href="{{ route('razen-blog.penulis.konten.create') }}"><i class="fas fa-plus"></i></a>
+            <a class="btn btn-outline-primary waves-effect waves-light mr-2 item_create" title="Tambah Data" href="{{ route('razen-blog.admin.konten.create') }}"><i class="fas fa-plus"></i></a>
         </div>
     </div>
     <!-- Content End -->
@@ -73,15 +72,27 @@
                                         <div class="col-12 mb-3">
                                             <p>{{$item['deskripsi_judul']}}</p>
                                         </div>
-                                        <hr>
                                         <div class="col-auto pe-3">
-                                            <a href="{{ route('razen-blog.penulis.konten.detail', ['id'=>$item['id']]) }}" class="btn btn-info btn-icon waves-effect waves-light"><i class="fas fa-eye"></i></a>
+                                            <div class="d-flex align-items-center">
+                                                @if (array_key_exists('foto', $item['penulis']))
+                                                    <div class="sw-5 d-inline-block position-relative me-3">
+                                                        <img src="{{ asset('images/razen-blog/foto/'.$item['penulis']['foto']) }}" class="img-fluid rounded-xl" alt="thumb">
+                                                    </div>
+                                                @endif
+                                                <div class="d-inline-block">
+                                                    <a href="#">{{$item['penulis']['nama']}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="opacity: 0%;">
+                                        <div class="col-auto pe-3">
+                                            <a href="{{ route('razen-blog.admin.konten.detail', ['id'=>$item['id']]) }}" class="btn btn-info btn-icon waves-effect waves-light"><i class="fas fa-eye"></i></a>
                                         </div>
                                         <div class="col-auto pe-3">
-                                            <a href="{{ route('razen-blog.penulis.konten.edit', ['id'=>$item['id']]) }}" class="btn btn-warning btn-icon waves-effect waves-light"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('razen-blog.admin.konten.edit', ['id'=>$item['id']]) }}" class="btn btn-warning btn-icon waves-effect waves-light"><i class="fas fa-edit"></i></a>
                                         </div>
                                         <div class="col-auto pe-3">
-                                            <a href="{{ route('razen-blog.penulis.konten.delete', ['id'=>$item['id']]) }}" class="btn btn-danger btn-icon waves-effect waves-light"><i class="fas fa-trash"></i></a>
+                                            <a href="{{ route('razen-blog.admin.konten.delete', ['id'=>$item['id']]) }}" class="btn btn-danger btn-icon waves-effect waves-light"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </div>
                                 </div>

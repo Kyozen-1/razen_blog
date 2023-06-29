@@ -2,6 +2,7 @@
 use App\Http\Controllers\RazenBlog\Admin\DashboardController;
 // Admin
 use App\Http\Controllers\RazenBlog\Admin\ProfilController;
+use App\Http\Controllers\RazenBlog\Admin\KontenController;
 // Landing Page
 use App\Http\Controllers\RazenBlog\LandingPage\BerandaController;
 use App\Http\Controllers\RazenBlog\LandingPage\BeritaController;
@@ -29,6 +30,17 @@ Route::prefix('admin')->group(function(){
         Route::get('/destroy/{id}',[ProfilController::class, 'destroy']);
         Route::post('/edit-media-sosial-profil', [ProfilController::class, 'edit_media_sosial_profil'])->name('razen-blog.admin.profil.edit-media-sosial-profil');
         Route::post('/tambah-media-sosial-profil', [ProfilController::class, 'tambah_media_sosial_profil'])->name('razen-blog.admin.profil.tambah-media-sosial-profil');
+    });
+
+    Route::prefix('konten')->group(function(){
+        Route::get('/', [KontenController::class, 'index'])->name('razen-blog.admin.konten.index');
+        Route::get('/create', [KontenController::class, 'create'])->name('razen-blog.admin.konten.create');
+        Route::post('/store', [KontenController::class, 'store'])->name('razen-blog.admin.konten.store');
+        Route::post('/select/kategori-konten', [KontenController::class, 'select_kategori_konten'])->name('razen-blog.admin.konten.select.kategori-konten');
+        Route::get('/detail/{id}', [KontenController::class, 'detail'])->name('razen-blog.admin.konten.detail');
+        Route::get('/edit/{id}', [KontenController::class, 'edit'])->name('razen-blog.admin.konten.edit');
+        Route::get('/delete/{id}', [KontenController::class, 'delete'])->name('razen-blog.admin.konten.delete');
+        Route::post('/update', [KontenController::class, 'update'])->name('razen-blog.admin.konten.update');
     });
 });
 

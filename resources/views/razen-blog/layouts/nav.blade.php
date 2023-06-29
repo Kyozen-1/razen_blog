@@ -79,6 +79,16 @@
                     </a>
                 </li>
                 <li>
+                    @if (request()->routeIs('razen-blog.admin.konten.index'))
+                        <a href="{{ route('razen-blog.admin.konten.index') }}" class="active">
+                    @else
+                        <a href="{{ route('razen-blog.admin.konten.index') }}">
+                    @endif
+                        <i data-acorn-icon="home-garage" class="icon" data-acorn-size="18"></i>
+                        <span class="label">Konten</span>
+                    </a>
+                </li>
+                <li>
                     @if (request()->routeIs('razen-blog.master-data.media-sosial.index') ||
                     request()->routeIs('razen-blog.master-data.kategori-konten.index'))
                     <a href="#master_data" class="active">
