@@ -4,6 +4,7 @@
 @section('header')
     @php
         use App\Models\LandingPageProfesi;
+        use Carbon\Carbon;
 
         $beranda = LandingPageProfesi::first();
 
@@ -70,38 +71,28 @@
                                 </a>
                             </div>
                             <div class="filter-form_block w-form">
-                                <form method="get" name="wf-form-Filter-Form" data-name="Filter Form" fs-cmsfilter-element="filters" fs-cmssort-element="list" id="wf-form-Filter-Form" class="filter-form_wrapper" aria-label="Filter Form">
-                                    <div class="form-input_wrapper">
-                                        <input type="text" class="form-input_search w-input" maxlength="256" name="Input-Search" fs-cmsfilter-field="*" data-name="Input Search" placeholder="Cari artikel" id="Input-Search">
-                                        <img loading="lazy" src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62a607d5ff170835c2c1819e_icon-search.svg" alt="" class="form-search_icon">
-                                    </div>
-                                    <h4 class="card-panduan-title margin-bottom-2">Urutkan</h4>
-                                    <div class="sort-field_wrapper">
-                                        <a href="#" fs-cmssort-desc="is-desc" fs-cmssort-element="trigger" fs-cmssort-field="update-date" fs-cmssort-asc="is-asc" class="sort-button w-button" role="columnheader" tabindex="0" aria-sort="none">Tanggal Publikasi</a>
-                                    </div>
-                                    <div class="filter-title_wrapper">
-                                        <h4 class="card-panduan-title">Panduan Karir</h4>
-                                        <a fs-cmsfilter-element="reset" href="#" class="reset-text">Hapus Semua</a>
-                                    </div>
-                                    <div class="filter-tag_wrapper form-sort_wrapper">
-                                        <div class="w-dyn-list">
-                                            <div role="list" class="w-dyn-items">
-                                                @php
-                                                    $number_kategori = 1;
-                                                @endphp
-                                                @foreach ($kategori_kontens as $kategori_konten)
-                                                    <div role="listitem" class="w-dyn-item">
-                                                        <label class="form-check_input_field w-radio">
-                                                            <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio_button w-radio-input"></div>
-                                                            <input type="radio" name="sort-by-radio" id="radio_button-{{$number_kategori++}}" value="most-recent" data-name="sort-by-radio" style="opacity:0;position:absolute;z-index:-1">
-                                                            <span fs-cmsfilter-field="topic" class="form-check_input_label w-form-label" for="radio_button">{{$kategori_konten->nama}}</span>
-                                                        </label>
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                <div class="filter-title_wrapper">
+                                    <h4 class="card-panduan-title">Kategori Profesi</h4>
+                                    <a fs-cmsfilter-element="reset" href="#" class="reset-text">Hapus Semua</a>
+                                </div>
+                                <div class="filter-tag_wrapper form-sort_wrapper">
+                                    <div class="w-dyn-list">
+                                        <div role="list" class="w-dyn-items">
+                                            @php
+                                                $number_kategori = 1;
+                                            @endphp
+                                            @foreach ($kategori_kontens as $kategori_konten)
+                                                <div role="listitem" class="w-dyn-item">
+                                                    <label class="form-check_input_field w-radio">
+                                                        <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio_button w-radio-input"></div>
+                                                        <input type="radio" name="sort-by-radio" id="radio_button-{{$number_kategori++}}" value="most-recent" data-name="sort-by-radio" style="opacity:0;position:absolute;z-index:-1">
+                                                        <span fs-cmsfilter-field="topic" class="form-check_input_label w-form-label" for="radio_button">{{$kategori_konten->nama}}</span>
+                                                    </label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                                 <div class="w-form-done" tabindex="-1" role="region" aria-label="Filter Form success"></div>
                                 <div class="w-form-fail" tabindex="-1" role="region" aria-label="Filter Form failure"></div>
                             </div>
@@ -110,25 +101,25 @@
                     <div id="w-node-_7b5acc26-a2fb-462b-b3cd-506b76c4b17c-1b121a22" class="content-list_wrapper">
                         <div class="collection-panduan w-dyn-list">
                             <div fs-cmsload-mode="pagination" fs-cmsfilter-element="list" fs-cmssort-element="list" fs-cmsload-element="list" role="list" class="content-list_panduan_grid_1 w-dyn-items">
-                                @foreach ($kontens as $item)
+                                @foreach ($kontens->toArray()['data'] as $item)
                                     <div role="listitem" class="collection-item_panduan w-dyn-item">
-                                        <a href="/panduan-karir/back-end-developer-resume" class="card-panduan direcion-orizontal w-inline-block">
+                                        <a href="{{ route('profesi-detail', ['id'=> $item['id']]) }}" class="card-panduan direcion-orizontal w-inline-block">
                                             <div class="card-panduan-content background-yellow">
-                                                <img src="https://assets-global.website-files.com/61af164800e38cf1b6c60b55/64217198bbdb6992133c5a47_resume%20back%20end%20developer.png" loading="lazy" alt="" sizes="(max-width: 479px) 91vw, (max-width: 991px) 34vw, (max-width: 1439px) 10vw, 122.6796875px" srcset="https://assets-global.website-files.com/61af164800e38cf1b6c60b55/64217198bbdb6992133c5a47_resume%20back%20end%20developer-p-500.png 500w, https://assets-global.website-files.com/61af164800e38cf1b6c60b55/64217198bbdb6992133c5a47_resume%20back%20end%20developer.png 601w" class="card-panduan-image_full">
+                                                <img src="{{ asset('images/razen-blog/konten/'.$item['gambar_mini']) }}" loading="lazy" alt="" sizes="(max-width: 479px) 91vw, (max-width: 991px) 34vw, (max-width: 1439px) 10vw, 122.6796875px" class="card-panduan-image_full">
                                             </div>
                                             <div class="card-panduan-text direction-vertical full-width">
-                                                <h4 fs-cmsfilter-field="title" class="card-panduan-title">Contoh Back End Developer Resume dan Tips Membuatnya</h4>
+                                                <h4 fs-cmsfilter-field="title" class="card-panduan-title">{{$item['judul']}}</h4>
                                                 <div class="tag-topic">
                                                     <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62a60158ddad956b7abedd37_icon-srticle-category.svg" loading="lazy" alt="" class="button-circle-image margin-right">
-                                                    <p fs-cmsfilter-field="topic" class="card-panduan-body text-color-black">Back End Developer</p>
+                                                    <p fs-cmsfilter-field="topic" class="card-panduan-body text-color-black">{{$item['kategori_konten']}}</p>
                                                 </div>
-                                                <p fs-cmsfilter-field="paragraph" class="card-panduan-body margin-bottom_16">Kamu perlu membuat back end developer resume yang keren jika kamu tertarik meniti karir di bidang ini.</p>
+                                                <p fs-cmsfilter-field="paragraph" class="card-panduan-body margin-bottom_16">{{$item['deskripsi_judul']}}</p>
                                                 <div class="divider-card_horizontal"></div>
                                                 <div class="card-author_block">
-                                                    <div style="background-image:url(&quot;https://assets-global.website-files.com/61af164800e38cf1b6c60b55/641d5ecdd758c86ec676248f_maria%20photo.png&quot;)" class="card-author_image"></div>
+                                                    <div style="background-image:url({{asset($item['penulis']['foto'])}})" class="card-author_image"></div>
                                                     <div class="card-author_name_block">
-                                                        <p class="card-author_title">Maria Caroline Samodra</p>
-                                                        <p fs-cmssort-field="update-date" fs-cmssort-type="date" class="card-article_date">March 27, 2023</p>
+                                                        <p class="card-author_title">{{$item['penulis']['nama']}}</p>
+                                                        <p fs-cmssort-field="update-date" fs-cmssort-type="date" class="card-article_date">{{Carbon::parse($item['tgl'])->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y')}}</p>
                                                     </div>
                                                 </div>
                                             </div>
