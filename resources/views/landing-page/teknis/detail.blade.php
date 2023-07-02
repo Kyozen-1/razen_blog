@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Razen Blog | Profesi | {{$konten->judul}}</title>
+        <title>Razen Blog | Teknis | {{$konten->judul}}</title>
         <meta content="Kamu perlu membuat back end developer resume yang keren jika kamu tertarik meniti karir di bidang ini." name="description">
         <link href="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/css/revou.054f48d06.min.css" rel="stylesheet" type="text/css">
         <style>
@@ -213,9 +213,9 @@
                                         <div style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="breadcrumb">
                                             <a href="{{ route('beranda') }}" class="breadcrumb-link">Razen Blog</a>
                                             <a href="#" class="breadcrumb-link_div">/</a>
-                                            <a href="{{ route('profesi') }}" class="breadcrumb-link">Profesi</a>
+                                            <a href="{{ route('teknis') }}" class="breadcrumb-link">Teknis</a>
                                             <a href="#" class="breadcrumb-link_div">/</a>
-                                            <a href="{{ route('profesi-detail', ['id'=>$konten->id]) }}" aria-current="page" class="breadcrumb-link w--current">{{$konten->judul}}</a>
+                                            <a href="{{ route('teknis-detail', ['id'=>$konten->id]) }}" aria-current="page" class="breadcrumb-link w--current">{{$konten->judul}}</a>
                                         </div>
                                         <h1 style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="heading-content">{{$konten->judul}}</h1>
                                         <div style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="program-title_body margin-bottom">{{$konten->deskripsi_judul}}</div>
@@ -300,7 +300,7 @@
                                             <div class="anchor-wrapper">
                                                 <div fs-cmsnest-collection="articles" class="content-list"></div>
                                             </div>
-                                            <a href="{{route('profesi-detail', ['id' => $konten->id])}}" class="hidden">Text Link</a>
+                                            <a href="{{route('teknis-detail', ['id' => $konten->id])}}" class="hidden">Text Link</a>
                                             </div>
                                         </div>
                                         </div>
@@ -312,7 +312,7 @@
                                     <div class="w-dyn-list">
                                         <div fs-cmsnest-collection="articles" role="list" class="w-dyn-items">
                                             <div role="listitem" class="collecton-item-link w-dyn-item">
-                                                <a href="{{ route('profesi-detail', ['id'=>$konten->id]) }}" aria-current="page" class="menu-sub_outline w-inline-block w--current">
+                                                <a href="{{ route('teknis-detail', ['id'=>$konten->id]) }}" aria-current="page" class="menu-sub_outline w-inline-block w--current">
                                                     <div class="menu-sub_non_active w-condition-invisible"></div>
                                                     <div class="menu-sub_active"></div>
                                                     <div class="menu-sub_text">{{$konten->judul}}</div>
@@ -327,7 +327,7 @@
                                             </div>
                                             @foreach ($konten->child_pivot_konten_terkait as $konten_terkait)
                                                 <div role="listitem" class="collecton-item-link w-dyn-item">
-                                                    <a href="{{ route('profesi-detail', ['id'=>$konten_terkait->child_id]) }}" class="menu-sub_outline w-inline-block">
+                                                    <a href="{{ route('teknis-detail', ['id'=>$konten_terkait->child_id]) }}" class="menu-sub_outline w-inline-block">
                                                         <div class="menu-sub_non_active"></div>
                                                         <div class="menu-sub_active w-condition-invisible"></div>
                                                         <div class="menu-sub_text">{{$konten_terkait->child->judul}}</div>
@@ -366,7 +366,7 @@
                                         @php
                                             $next_konten = $konten->child_pivot_konten_terkait->random();
                                         @endphp
-                                        <a href="{{ route('profesi-detail', ['id'=>$next_konten->child_id]) }}" class="articles-suggestion w-inline-block">
+                                        <a href="{{ route('teknis-detail', ['id'=>$next_konten->child_id]) }}" class="articles-suggestion w-inline-block">
                                             <div class="article-link-wrapper margin-bottom">
                                                 <div>Next </div>
                                                 <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62b22d583188664a8a92b940_icon-arrow-grey.svg" loading="lazy" alt="" class="icon-link-article next-article">

@@ -31,7 +31,9 @@ Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
 Route::get('/profesi', [HomeController::class, 'profesi'])->name('profesi');
 Route::get('/profesi-detail/{id}', [HomeController::class, 'profesi_detail'])->name('profesi-detail');
 Route::get('/teknis', [HomeController::class, 'teknis'])->name('teknis');
+Route::get('/teknis-detail/{id}', [HomeController::class, 'teknis_detail'])->name('teknis-detail');
 Route::get('/kosakata', [HomeController::class, 'kosakata'])->name('kosakata');
+Route::get('/kosakata-detail/{id}', [HomeController::class, 'kosakata_detail'])->name('kosakata-detail');
 
 Route::get('/login',[LoginController::class, 'showLoginForm'])->name('razen-blog.login');
 Route::post('/login', [LoginController::class, 'login'])->name('razen-blog.login.submit');
