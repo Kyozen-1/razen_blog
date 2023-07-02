@@ -128,27 +128,29 @@
                                 @endforeach
                             </div>
                             <div role="navigation" aria-label="List" class="w-pagination-wrapper pagination">
-                                <a href="?166c24fd_page=0" aria-label="Previous Page" class="w-pagination-previous pagination-prev" style="display: none;">
-                                    <svg class="w-pagination-previous-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                                    <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M8 10L4 6l4-4"></path>
-                                    </svg>
-                                    <div class="pagination-text w-inline-block">Previous</div>
-                                </a>
-                                <a href="?166c24fd_page=2" aria-label="Next Page" class="w-pagination-next pagination-next">
-                                    <div class="pagination-text w-inline-block">Next</div>
-                                    <svg class="w-pagination-next-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                                    <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"></path>
-                                    </svg>
-                                </a>
-                            <link rel="prerender" href="?166c24fd_page=2">
-                                <a fs-cmsload-element="page-button" href="?166c24fd_page=1" class="pagination-number w-inline-block w--current" aria-current="page">1</a>
-                                <a fs-cmsload-element="page-button" href="?166c24fd_page=2" class="pagination-number w-inline-block">2</a>
-                                <a fs-cmsload-element="page-button" href="?166c24fd_page=3" class="pagination-number w-inline-block">3</a>
-                                <a fs-cmsload-element="page-button" href="?166c24fd_page=4" class="pagination-number w-inline-block">4</a>
-                                <a fs-cmsload-element="page-button" href="?166c24fd_page=5" class="pagination-number w-inline-block">5</a>
-                                <div>...</div>
-                                <a fs-cmsload-element="page-button" href="?166c24fd_page=24" class="pagination-number w-inline-block">24</a>
-                            </div>
+                                @foreach ($kontens->toArray()['links'] as $item)
+                                    @if ($loop->first)
+                                        @if ($item['url'] != null)
+                                            <a href="{{$item['url']}}" aria-label="Previous Page" class="w-pagination-previous pagination-prev" style="display: none;">
+                                                <svg class="w-pagination-previous-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
+                                                <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M8 10L4 6l4-4"></path>
+                                                </svg>
+                                                <div class="pagination-text w-inline-block">Previous</div>
+                                            </a>
+                                        @endif
+                                    @elseif ($loop->last)
+                                        @if ($item['url'] != null)
+                                            <a href="{{$item['url']}}" aria-label="Next Page" class="w-pagination-next pagination-next">
+                                                <div class="pagination-text w-inline-block">Next</div>
+                                                <svg class="w-pagination-next-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
+                                                <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"></path>
+                                                </svg>
+                                            </a>
+                                        @endif
+                                    @else
+                                        <a fs-cmsload-element="page-button" href="{{$item['url']}}" class="pagination-number w-inline-block @if($item['active'] == true) w--current @endif" aria-current="page">{{$item['label']}}</a>
+                                    @endif
+                                @endforeach
                         </div>
                     </div>
                     <a href="#top" data-w-id="ed44f92a-129a-a909-3496-3b9f02f9d8e3" class="button-top w-button"></a>

@@ -70,7 +70,10 @@ class HomeController extends Controller
 
     public function profesi_detail($id)
     {
-        return view('landing-page.profesi.detail');
+        $konten = Konten::find($id);
+        return view('landing-page.profesi.detail', [
+            'konten' => $konten
+        ]);
     }
 
     public function teknis()
