@@ -28,6 +28,7 @@ Auth::routes(['register' => false, 'login' => false]);
 
 Route::get('/', [HomeController::class, 'beranda'])->name('beranda');
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
+Route::get('/berita-detail/{id}', [HomeController::class, 'berita_detail'])->name('berita-detail');
 Route::get('/profesi', [HomeController::class, 'profesi'])->name('profesi');
 Route::get('/profesi-detail/{id}', [HomeController::class, 'profesi_detail'])->name('profesi-detail');
 Route::get('/teknis', [HomeController::class, 'teknis'])->name('teknis');
