@@ -27,12 +27,19 @@ use App\Http\Controllers\Auth\RazenBlog\PenulisLoginController;
 Auth::routes(['register' => false, 'login' => false]);
 
 Route::get('/', [HomeController::class, 'beranda'])->name('beranda');
+
+Route::get('/filter/kategori/{id}', [HomeController::class, 'filter_kategori'])->name('filter-kategori');
+Route::get('/filter/all-kategori/{tipe_konten}', [HomeController::class, 'all_kategori'])->name('filter-all-kategori');
+
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
 Route::get('/berita-detail/{id}', [HomeController::class, 'berita_detail'])->name('berita-detail');
+
 Route::get('/profesi', [HomeController::class, 'profesi'])->name('profesi');
 Route::get('/profesi-detail/{id}', [HomeController::class, 'profesi_detail'])->name('profesi-detail');
+
 Route::get('/teknis', [HomeController::class, 'teknis'])->name('teknis');
 Route::get('/teknis-detail/{id}', [HomeController::class, 'teknis_detail'])->name('teknis-detail');
+
 Route::get('/kosakata', [HomeController::class, 'kosakata'])->name('kosakata');
 Route::get('/kosakata-detail/{id}', [HomeController::class, 'kosakata_detail'])->name('kosakata-detail');
 
@@ -53,3 +60,5 @@ Route::prefix('razen-blog')->group(function(){
         @include('penulis.php');
     });
 });
+
+Route::get('/get-berita', [HomeController::class, 'get_berita'])->name('get-berita');
