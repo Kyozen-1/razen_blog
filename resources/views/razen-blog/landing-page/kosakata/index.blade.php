@@ -1,6 +1,5 @@
 @extends('razen-blog.layouts.app')
 @section('title', 'Razen Blog | Landing Page | Kosakata')
-
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('acorn/acorn-elearning-portal/font/CS-Interface/style.css') }}">
@@ -26,17 +25,24 @@
         .modal-dialog{
             pointer-events: all !important;
         }
+
+        .hero-revoupedia-list {
+            background-image: url();
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
 @endsection
 
 @section('content')
-    @php
-        use App\Models\LandingPageKosakata;
+@php
+    use App\Models\LandingPageKosakata;
 
-        $beranda = LandingPageKosakata::first();
+    $beranda = LandingPageKosakata::first();
 
-        $section_1 = json_decode($beranda->section_1, true);
-    @endphp
+    $section_1 = json_decode($beranda->section_1, true);
+@endphp
     <!-- Title and Top Buttons Start -->
     <div class="page-title-container">
         <div class="row">
@@ -88,6 +94,14 @@
                             <label for="" class="form-label">Deskripsi</label>
                             <textarea name="deskripsi" rows="5" class="form-control" id="dekripsi_section_1" required>{{$section_1?$section_1['deskripsi']:'' }}</textarea>
                         </div>
+                        <div class="mb-3 position-relative form-group">
+                            <label for="" class="form-label">Gambar Background</label>
+                            @if ($section_1)
+                            <input type="file" class="dropify" name="gambar_background" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" data-default-file="{{ asset('images/landing-page/kosakata/'.$section_1['gambar_background']) }}" required>
+                            @else
+                            <input type="file" class="dropify" name="gambar_background" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" required>
+                            @endif
+                        </div>
                     </div>
                     <div class="col-12" style="text-align: right">
                         <button type="submit" class="btn btn-primary mb-0">Submit</button>
@@ -119,4 +133,9 @@
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js" integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            $('.dropify').dropify();
+        });
+    </script>
 @endsection

@@ -125,7 +125,8 @@
                     request()->routeIs('razen-blog.landing-page.profesi.index') ||
                     request()->routeIs('razen-blog.landing-page.teknis.index') ||
                     request()->routeIs('razen-blog.landing-page.kosakata.index') ||
-                    request()->routeIs('razen-blog.landing-page.panduan.index'))
+                    request()->routeIs('razen-blog.landing-page.panduan.index') ||
+                    request()->routeIs('razen-blog.landing-page.kontrol.index'))
                     <a href="#landing_page" class="active">
                     @else
                     <a href="#landing_page">
@@ -134,6 +135,15 @@
                         <span class="label">Landing Page</span>
                     </a>
                     <ul id="landing_page">
+                        {{-- <li>
+                            @if (request()->routeIs('razen-blog.landing-page.kontrol.index'))
+                                <a href="{{ route('razen-blog.landing-page.kontrol.index') }}" class="active">
+                            @else
+                                <a href="{{ route('razen-blog.landing-page.kontrol.index') }}">
+                            @endif
+                                <span class="label">Kontrol</span>
+                            </a>
+                        </li> --}}
                         <li>
                             @if (request()->routeIs('razen-blog.landing-page.beranda.index'))
                                 <a href="{{ route('razen-blog.landing-page.beranda.index') }}" class="active">

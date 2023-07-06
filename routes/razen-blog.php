@@ -4,6 +4,7 @@ use App\Http\Controllers\RazenBlog\Admin\DashboardController;
 use App\Http\Controllers\RazenBlog\Admin\ProfilController;
 use App\Http\Controllers\RazenBlog\Admin\KontenController;
 // Landing Page
+use App\Http\Controllers\RazenBlog\LandingPage\KontrolController;
 use App\Http\Controllers\RazenBlog\LandingPage\BerandaController;
 use App\Http\Controllers\RazenBlog\LandingPage\BeritaController;
 use App\Http\Controllers\RazenBlog\LandingPage\ProfesiController;
@@ -45,6 +46,10 @@ Route::prefix('admin')->group(function(){
 });
 
 Route::prefix('landing-page')->group(function(){
+    Route::prefix('kontrol')->group(function(){
+        Route::get('/', [KontrolController::class, 'index'])->name('razen-blog.landing-page.kontrol.index');
+    });
+
     Route::prefix('beranda')->group(function(){
         Route::get('/', [BerandaController::class, 'index'])->name('razen-blog.landing-page.beranda.index');
 

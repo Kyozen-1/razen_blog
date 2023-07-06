@@ -1,5 +1,5 @@
 @extends('razen-blog.layouts.app')
-@section('title', 'Razen Blog | Landing Page | Profesi')
+@section('title', 'Razen Blog | Landing Page | Kontrol')
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -30,24 +30,17 @@
 @endsection
 
 @section('content')
-    @php
-        use App\Models\LandingPageProfesi;
-
-        $beranda = LandingPageProfesi::first();
-
-        $section_1 = json_decode($beranda->section_1, true);
-    @endphp
     <!-- Title and Top Buttons Start -->
     <div class="page-title-container">
         <div class="row">
         <!-- Title Start -->
         <div class="col-12 col-md-7">
-            <h1 class="mb-0 pb-0 display-4" id="title">Profesi</h1>
+            <h1 class="mb-0 pb-0 display-4" id="title">Kontrol</h1>
             <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
                 <ul class="breadcrumb pt-0">
                     <li class="breadcrumb-item"><a href="{{ route('razen-blog.admin.dashboard.index') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="#">Landing Page</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('razen-blog.landing-page.profesi.index') }}">Profesi</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('razen-blog.landing-page.kontrol.index') }}">Kontrol</a></li>
                 </ul>
             </nav>
         </div>
@@ -64,22 +57,16 @@
     <div class="card mb-5">
         <div class="card-body">
             <div class="row mb-3">
-                <div class="col-6 mb-3">
-                    <h2 class="small-title">Edit Section 1</h2>
-                </div>
-                <div class="col-6 mb-3" style="text-align: right;">
-                    <a href="{{ route('profesi') }}#page-padding-hero" class="btn btn-icon waves-effect waves-light btn-secondary" target="blank"><i class="fas fa-pager"></i> Preview</a>
-                </div>
                 <div class="col-12">
-                    <img src="{{ asset('images/landing-page/profesi/section_1.png') }}" alt="" class="img-fluid rounded">
+                    <h2 class="small-title">Kontrol</h2>
                 </div>
             </div>
             {{-- Form Start --}}
 
-            <form action="{{ route('razen-blog.landing-page.profesi.store.section-1') }}" novalidate="novalidate" method="POST" enctype="multipart/form-data">
+            {{-- <form action="{{ route('razen-blog.landing-page.beranda.store.section-1') }}" novalidate="novalidate" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-6 col-12">
                         <div class="mb-3 position-relative form-group">
                             <label for="" class="form-label">Judul</label>
                             <input type="text" class="form-control" name="judul" value="{{$section_1?$section_1['judul']:'' }}" required>
@@ -88,10 +75,12 @@
                             <label for="" class="form-label">Deskripsi</label>
                             <textarea name="deskripsi" rows="5" class="form-control" id="dekripsi_section_1" required>{{$section_1?$section_1['deskripsi']:'' }}</textarea>
                         </div>
+                    </div>
+                    <div class="col-md-6 col-12">
                         <div class="mb-3 position-relative form-group">
                             <label for="" class="form-label">Gambar Background</label>
                             @if ($section_1)
-                            <input type="file" class="dropify" name="gambar_background" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" data-default-file="{{ asset('images/landing-page/profesi/'.$section_1['gambar_background']) }}" required>
+                            <input type="file" class="dropify" name="gambar_background" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" data-default-file="{{ asset('images/landing-page/beranda/'.$section_1['gambar_background']) }}" required>
                             @else
                             <input type="file" class="dropify" name="gambar_background" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" required>
                             @endif
@@ -101,7 +90,7 @@
                         <button type="submit" class="btn btn-primary mb-0">Submit</button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
 
             {{-- Form End --}}
         </div>
@@ -127,9 +116,4 @@
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js" integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function(){
-            $('.dropify').dropify();
-        });
-    </script>
 @endsection

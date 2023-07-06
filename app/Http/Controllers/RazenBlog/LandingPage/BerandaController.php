@@ -114,6 +114,7 @@ class BerandaController extends Controller
 
         $array = [
             'judul' => $request->judul,
+            'warna_background' => $request->warna_background,
             'konten' => $konten
         ];
 
@@ -414,12 +415,31 @@ class BerandaController extends Controller
                 } else {
                     $gambarName = $get_section_4['gambar'];
                 }
+
+                if ($request->gambar_background) {
+                    $gambarBackgroundName = $get_section_4['gambar_background'];
+                    File::delete(public_path('images/landing-page/beranda/'.$gambarBackgroundName));
+
+                    $gambarBackgroundExtension = $request->gambar_background->extension();
+                    $gambarBackgroundName =  uniqid().'-'.date("ymd").'.'.$gambarBackgroundExtension;
+                    $gambarBackground = Image::make($request->gambar_background);
+                    $gambarBackgroundSize = public_path('images/landing-page/beranda/'.$gambarBackgroundName);
+                    $gambarBackground->save($gambarBackgroundSize, 100);
+                } else {
+                    $gambarBackgroundName = $get_section_4['gambar_background'];
+                }
             } else {
                 $gambarExtension = $request->gambar->extension();
                 $gambarName =  uniqid().'-'.date("ymd").'.'.$gambarExtension;
                 $gambar = Image::make($request->gambar);
                 $gambarSize = public_path('images/landing-page/beranda/'.$gambarName);
                 $gambar->save($gambarSize, 100);
+
+                $gambarBackgroundExtension = $request->gambar_background->extension();
+                $gambarBackgroundName =  uniqid().'-'.date("ymd").'.'.$gambarBackgroundExtension;
+                $gambarBackground = Image::make($request->gambar_background);
+                $gambarBackgroundSize = public_path('images/landing-page/beranda/'.$gambarBackgroundName);
+                $gambarBackground->save($gambarBackgroundSize, 100);
             }
         } else {
             $beranda = new LandingPageBeranda;
@@ -429,12 +449,19 @@ class BerandaController extends Controller
             $gambar = Image::make($request->gambar);
             $gambarSize = public_path('images/landing-page/beranda/'.$gambarName);
             $gambar->save($gambarSize, 100);
+
+            $gambarBackgroundExtension = $request->gambar_background->extension();
+            $gambarBackgroundName =  uniqid().'-'.date("ymd").'.'.$gambarBackgroundExtension;
+            $gambarBackground = Image::make($request->gambar_background);
+            $gambarBackgroundSize = public_path('images/landing-page/beranda/'.$gambarBackgroundName);
+            $gambarBackground->save($gambarBackgroundSize, 100);
         }
 
         $array = [
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $gambarName
+            'gambar' => $gambarName,
+            'gambar_background' => $gambarBackgroundName,
         ];
 
         $beranda->section_4 = json_encode($array);

@@ -1,20 +1,32 @@
 @extends('landing-page.layouts.app')
 @section('title', 'Kosakata | Razen Blog')
 
+@php
+    use App\Models\LandingPageKosakata;
+    use App\Models\Konten;
+    use App\Models\MasterKategoriKonten;
+    use App\Models\PivotKontenTerkait;
+    use App\Models\PivotSubJudulKonten;
+    use App\Models\PivotProfilMediaSosial;
+    use App\Models\MasterMediaSosial;
+
+    $beranda = LandingPageKosakata::first();
+
+    $section_1 = json_decode($beranda->section_1, true);
+@endphp
+
+@section('css')
+    <style>
+        .hero-revoupedia-list {
+            background-image: url("{{ asset('images/landing-page/kosakata/'.$section_1['gambar_background']) }}");
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+@endsection
+
 @section('header')
-    @php
-        use App\Models\LandingPageKosakata;
-        use App\Models\Konten;
-        use App\Models\MasterKategoriKonten;
-        use App\Models\PivotKontenTerkait;
-        use App\Models\PivotSubJudulKonten;
-        use App\Models\PivotProfilMediaSosial;
-        use App\Models\MasterMediaSosial;
-
-        $beranda = LandingPageKosakata::first();
-
-        $section_1 = json_decode($beranda->section_1, true);
-    @endphp
     <header id="top" data-w-id="f7a82cd5-7ab9-54ac-433f-6597aad7edab" class="hero-keyword">
         <div data-collapse="medium" data-animation="default" data-duration="200" data-easing="ease-in-out" data-easing2="ease-in-out" data-doc-height="1" role="banner" class="nav_component transparent w-nav">
             <div class="page-padding">

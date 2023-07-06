@@ -20,6 +20,20 @@
                 background-image:url({{ asset('images/landing-page/beranda/'.$section_1['gambar_background']) }})
             }
         }
+        .section-kosakata {
+            z-index: 7;
+            background-color: #fff;
+            background-image: url("{{ asset('images/landing-page/beranda/'.$section_4['gambar_background']) }}");
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-top-left-radius: 2.5rem;
+            border-top-right-radius: 2.5rem;
+            display: block;
+            position: relative;
+            top: -126px;
+            overflow: hidden;
+        }
     </style>
 @endsection
 
@@ -67,7 +81,7 @@
 @endsection
 
 @section('content')
-    <section id="section-panduan_karir" data-w-id="ef9b5c07-bbc4-8281-81d7-997305c63d40" class="section-panduan_karir is-relative">
+    <section id="section-panduan_karir" data-w-id="ef9b5c07-bbc4-8281-81d7-997305c63d40" class="section-panduan_karir is-relative" style="background: {{$section_2 ? $section_2['warna_background'] : ''}} !important;">
         <div class="padding-vertical padding-medium">
             <div class="page-padding">
                 <div class="container-large">

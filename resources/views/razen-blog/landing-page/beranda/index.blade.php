@@ -138,6 +138,10 @@
                             <label for="" class="form-label">Judul</label>
                             <input type="text" class="form-control" name="judul" value="{{$section_2?$section_2['judul'] : ''}}" required>
                         </div>
+                        <div class="mb-3 position-relative form-group">
+                            <label for="" class="form-label">Warna Background</label>
+                            <input type="color" class="form-control" name="warna_background" value="{{$section_2 ? $section_2['warna_background'] : ''}}" required>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mb-0">Submit</button>
@@ -327,6 +331,14 @@
                             <input type="file" class="dropify" name="gambar" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" data-default-file="{{ asset('images/landing-page/beranda/'.$section_4['gambar']) }}" required>
                             @else
                             <input type="file" class="dropify" name="gambar" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" required>
+                            @endif
+                        </div>
+                        <div class="mb-3 position-relative form-group">
+                            <label for="" class="form-label">Gambar Background</label>
+                            @if ($section_4)
+                            <input type="file" class="dropify" name="gambar_background" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" data-default-file="{{ asset('images/landing-page/beranda/'.$section_4['gambar_background']) }}" required>
+                            @else
+                            <input type="file" class="dropify" name="gambar_background" data-height="300" data-allowed-file-extensions="png jpg jpeg" data-show-errors="true" required>
                             @endif
                         </div>
                     </div>

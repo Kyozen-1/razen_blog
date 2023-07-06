@@ -18,7 +18,7 @@
 <meta content="{{$profil->deskripsi}}" property="twitter:description">
 <meta content="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62b49d739cc1e8c0e7aff555_open%20graph%20(1).png" property="twitter:image">
 <meta property="og:type" content="website">
-<meta content="summary_large_image" name="twitter:card">
+{{-- <meta content="summary_large_image" name="twitter:card"> --}}
 <meta content="width=device-width, initial-scale=1" name="viewport">
 {{-- <meta content="euFNMilTOMQzNT5XajbJXN4d-Y2vY82jFZwaea1x8tI" name="google-site-verification"> --}}
 <link href="{{ asset('landing-page/assets/css/assets-global.website-files.com_61af164800e38c4f53c60b4e_css_revou.68f56a50a.min.css') }}" rel="stylesheet" type="text/css">

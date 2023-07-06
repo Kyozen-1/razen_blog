@@ -1,15 +1,27 @@
 @extends('landing-page.layouts.app')
 @section('title', 'Berita | Razen Blog')
 
+@php
+    use App\Models\LandingPageBerita;
+    use Carbon\Carbon;
+
+    $beranda = LandingPageBerita::first();
+
+    $section_1 = json_decode($beranda->section_1, true);
+@endphp
+
+@section('css')
+    <style>
+        .hero-revoupedia-list {
+            background-image: url("{{ asset('images/landing-page/berita/'.$section_1['gambar_background']) }}");
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+@endsection
+
 @section('header')
-    @php
-        use App\Models\LandingPageBerita;
-        use Carbon\Carbon;
-
-        $beranda = LandingPageBerita::first();
-
-        $section_1 = json_decode($beranda->section_1, true);
-    @endphp
     <header id="top" data-w-id="2241d6d7-0a71-6df6-6b18-88715515709b" class="hero-revoupedia-list">
         <div data-collapse="medium" data-animation="default" data-duration="200" data-easing="ease-in-out" data-easing2="ease-in-out" data-doc-height="1" role="banner" class="nav_component transparent w-nav">
             <div class="page-padding">
