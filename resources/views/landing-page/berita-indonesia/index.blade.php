@@ -51,10 +51,10 @@
                             </div>
                         </div>
                         <div style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" class="filter-block">
-                            <a href="{{ route('berita') }}" aria-current="page" class="filter-category state-active w-button w--current">berita</a>
+                            <a href="{{ route('berita') }}" class="filter-category w-button">berita</a>
                             <a href="{{ route('profesi') }}" class="filter-category w-button">profesi</a>
                             <a href="{{ route('teknis') }}" class="filter-category w-button">teknis</a>
-                            <a href="{{ route('berita-indonesia') }}" class="filter-category w-button">Berita Indonesia</a>
+                            <a href="{{ route('berita-indonesia') }}" aria-current="page" class="filter-category state-active w-button w--current">Berita Indonesia</a>
                         </div>
                     </div>
                 </div>
@@ -94,12 +94,12 @@
                                                 @php
                                                     $number_kategori = 1;
                                                 @endphp
-                                                @foreach ($kategori_kontens as $kategori_konten)
+                                                @foreach ($kategori_berita_indonesias as $kategori_berita_indonesia)
                                                     <div role="listitem" class="w-dyn-item">
                                                         <label class="form-check_input_field w-radio">
-                                                            <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio_button w-radio-input" id="label_kategori_{{$kategori_konten->id}}"></div>
-                                                            <input type="radio" name="sort-by-radio" id="radio_button-{{$number_kategori++}}" value="{{$kategori_konten->id}}" style="position:absolute;z-index:-1">
-                                                            <span fs-cmsfilter-field="topic" class="form-check_input_label w-form-label" for="radio_button">{{$kategori_konten->nama}}</span>
+                                                            <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio_button w-radio-input" id="label_kategori_{{$kategori_berita_indonesia}}"></div>
+                                                            <input type="radio" name="sort-by-radio" id="radio_button-{{$number_kategori++}}" value="{{$kategori_berita_indonesia}}" style="position:absolute;z-index:-1">
+                                                            <span fs-cmsfilter-field="topic" class="form-check_input_label w-form-label" for="radio_button">{{$kategori_berita_indonesia}}</span>
                                                         </label>
                                                     </div>
                                                 @endforeach
@@ -112,7 +112,7 @@
                         <div id="w-node-_7b5acc26-a2fb-462b-b3cd-506b76c4b17c-1b121a22" class="content-list_wrapper">
                             <div class="collection-panduan w-dyn-list" id="div_konten">
                                 <div fs-cmsload-mode="pagination" fs-cmsfilter-element="list" fs-cmssort-element="list" fs-cmsload-element="list" role="list" class="content-list_panduan_grid_1 w-dyn-items">
-                                    @foreach ($kontens->toArray()['data'] as $item)
+                                    {{-- @foreach ($kontens->toArray()['data'] as $item)
                                         <div role="listitem" class="collection-item_panduan w-dyn-item">
                                             <a href="{{ route('teknis-detail', ['id'=> $item['id']]) }}" class="card-panduan direcion-orizontal w-inline-block">
                                                 <div class="card-panduan-content background-yellow">
@@ -136,31 +136,31 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    @endforeach
-                                </div>
-                                <div role="navigation" aria-label="List" class="w-pagination-wrapper pagination">
-                                    @foreach ($kontens->toArray()['links'] as $item)
-                                        @if ($loop->first)
-                                            @if ($item['url'] != null)
-                                                <a href="{{$item['url']}}" aria-label="Previous Page" class="w-pagination-previous pagination-prev" style="display: none;">
-                                                    <svg class="w-pagination-previous-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                                                    <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M8 10L4 6l4-4"></path>
-                                                    </svg>
-                                                    <div class="pagination-text w-inline-block">Previous</div>
-                                                </a>
-                                            @endif
-                                        @elseif ($loop->last)
-                                            @if ($item['url'] != null)
-                                                <a href="{{$item['url']}}" aria-label="Next Page" class="w-pagination-next pagination-next">
-                                                    <div class="pagination-text w-inline-block">Next</div>
-                                                    <svg class="w-pagination-next-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                                                    <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"></path>
-                                                    </svg>
-                                                </a>
-                                            @endif
-                                        @else
-                                            <a fs-cmsload-element="page-button" href="{{$item['url']}}" class="pagination-number w-inline-block @if($item['active'] == true) w--current @endif" aria-current="page">{{$item['label']}}</a>
-                                        @endif
+                                    @endforeach --}}
+                                    @foreach ($beritas as $berita)
+                                        <div role="listitem" class="collection-item_panduan w-dyn-item">
+                                            <a href="{{$berita->link}}" class="card-panduan direcion-orizontal w-inline-block" target="blank">
+                                                <div class="card-panduan-content background-yellow">
+                                                    @if (isset($berita->thumbnail))
+                                                    <img src="{{ $berita->thumbnail }}" loading="lazy" alt="" sizes="(max-width: 479px) 91vw, (max-width: 991px) 34vw, (max-width: 1439px) 10vw, 122.6796875px" class="card-panduan-image_full">
+                                                    @endif
+                                                </div>
+                                                <div class="card-panduan-text direction-vertical full-width">
+                                                    <h4 fs-cmsfilter-field="title" class="card-panduan-title">{{$berita->title}}</h4>
+                                                    <div class="tag-topic">
+                                                        <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62a60158ddad956b7abedd37_icon-srticle-category.svg" loading="lazy" alt="" class="button-circle-image margin-right">
+                                                        <p fs-cmsfilter-field="topic" class="card-panduan-body text-color-black">Terbaru</p>
+                                                    </div>
+                                                    <p fs-cmsfilter-field="paragraph" class="card-panduan-body margin-bottom_16">{{$berita->description}}</p>
+                                                    <div class="divider-card_horizontal"></div>
+                                                    <div class="card-author_block">
+                                                        <div class="card-author_name_block">
+                                                            <p fs-cmssort-field="update-date" fs-cmssort-type="date" class="card-article_date">{{Carbon::parse($berita->pubDate)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('l, j F Y')}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -183,9 +183,9 @@
             $('#label_kategori_'+value).addClass('w--redirected-checked');
 
             $('#div_konten').empty();
-
-            var url = "{{ route('filter-kategori', ['id' => ":value"]) }}";
+            var url = "{{ route('berita-indonesia.filter.kategori', ['kategori' => ":value"]) }}";
             url = url.replace(':value', value);
+            var kategori = value;
             $.ajax({
                 url: url,
                 dataType: "json",
@@ -195,15 +195,12 @@
 
                     data_konten += '<div fs-cmsload-mode="pagination" fs-cmsfilter-element="list" fs-cmssort-element="list" fs-cmsload-element="list" role="list" class="content-list_panduan_grid_1 w-dyn-items">';
                     moment.locale('id');
-                    $.each(data.kontens.data, function(key, value){
-                        var route_konten = "{{ route('teknis-detail', ['id'=> ":route_id"]) }}";
-                        route_konten = route_konten.replace(':route_id', value['id']);
+                    $.each(data.kontens, function(key, value){
+                        var route_konten = value['link'];
 
-                        var gambar_konten = "{{ asset('images/razen-blog/konten') }}" + '/' + value['gambar_mini'];
+                        var gambar_konten = value['thumbnail'];
 
-                        var foto_penulis = "{{asset('')}}" + value['penulis']['foto'];
-
-                        var tanggal = moment(value.tgl).format('LLLL');
+                        var tanggal = moment(value['pubDate']).format('LLLL');
 
                         data_konten += `<div role="listitem" class="collection-item_panduan w-dyn-item">
                                             <a href="${route_konten}" class="card-panduan direcion-orizontal w-inline-block">
@@ -211,17 +208,15 @@
                                                     <img src="${gambar_konten}" loading="lazy" alt="" sizes="(max-width: 479px) 91vw, (max-width: 991px) 34vw, (max-width: 1439px) 10vw, 122.6796875px" class="card-panduan-image_full">
                                                 </div>
                                                 <div class="card-panduan-text direction-vertical full-width">
-                                                    <h4 fs-cmsfilter-field="title" class="card-panduan-title">${value['judul']}</h4>
+                                                    <h4 fs-cmsfilter-field="title" class="card-panduan-title">${value['title']}</h4>
                                                     <div class="tag-topic">
                                                         <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62a60158ddad956b7abedd37_icon-srticle-category.svg" loading="lazy" alt="" class="button-circle-image margin-right">
-                                                        <p fs-cmsfilter-field="topic" class="card-panduan-body text-color-black">${value['kategori_konten']}</p>
+                                                        <p fs-cmsfilter-field="topic" class="card-panduan-body text-color-black">${kategori}</p>
                                                     </div>
-                                                    <p fs-cmsfilter-field="paragraph" class="card-panduan-body margin-bottom_16">${value['deskripsi_judul']}</p>
+                                                    <p fs-cmsfilter-field="paragraph" class="card-panduan-body margin-bottom_16">${value['description']}</p>
                                                     <div class="divider-card_horizontal"></div>
                                                     <div class="card-author_block">
-                                                        <div style="background-image:url(${foto_penulis})" class="card-author_image"></div>
                                                         <div class="card-author_name_block">
-                                                            <p class="card-author_title">${value['penulis']['nama']}</p>
                                                             <p fs-cmssort-field="update-date" fs-cmssort-type="date" class="card-article_date">${tanggal}</p>
                                                         </div>
                                                     </div>
@@ -229,41 +224,6 @@
                                             </a>
                                         </div>`;
                     });
-                    data_konten += '</div>';
-
-                    data_konten += '<div role="navigation" aria-label="List" class="w-pagination-wrapper pagination">';
-                    $.each(data.kontens.links, function(key, value){
-                        if (value['label'] == '&laquo; Previous') {
-                            if(value['url'] != null)
-                            {
-                                data_konten += `<a href="${value['url']}" aria-label="Previous Page" class="w-pagination-previous pagination-prev" style="display: none;">
-                                                    <svg class="w-pagination-previous-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                                                    <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M8 10L4 6l4-4"></path>
-                                                    </svg>
-                                                    <div class="pagination-text w-inline-block">Previous</div>
-                                                </a>`;
-                            }
-                        } else if (value['label'] == 'Next &raquo;')
-                        {
-                            if(value['url'] != null)
-                            {
-                                data_konten += `<a href="${value['url']}" aria-label="Next Page" class="w-pagination-next pagination-next">
-                                                    <div class="pagination-text w-inline-block">Next</div>
-                                                    <svg class="w-pagination-next-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                                                    <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"></path>
-                                                    </svg>
-                                                </a>`;
-                            }
-                        } else {
-                            data_konten += '<a fs-cmsload-element="page-button" href="'+value['url']+'" class="pagination-number w-inline-block';
-                            if(value['active'] == true)
-                            {
-                                data_konten += 'w--current';
-                            }
-                            data_konten +='" aria-current="page">'+value['label']+'</a>';
-                        }
-                    });
-
                     data_konten += '</div>';
 
                     $('#div_konten').append(data_konten);
@@ -276,7 +236,8 @@
 
             $('#div_konten').empty();
 
-            var url = "{{ route('filter-all-kategori', ['tipe_konten' => 'berita']) }}";
+            var url = "{{ route('berita-indonesia.filter.kategori.reset') }}";
+            var kategori = 'terbaru';
             $.ajax({
                 url: url,
                 dataType: "json",
@@ -286,15 +247,12 @@
 
                     data_konten += '<div fs-cmsload-mode="pagination" fs-cmsfilter-element="list" fs-cmssort-element="list" fs-cmsload-element="list" role="list" class="content-list_panduan_grid_1 w-dyn-items">';
                     moment.locale('id');
-                    $.each(data.kontens.data, function(key, value){
-                        var route_konten = "{{ route('teknis-detail', ['id'=> ":route_id"]) }}";
-                        route_konten = route_konten.replace(':route_id', value['id']);
+                    $.each(data.kontens, function(key, value){
+                        var route_konten = value['link'];
 
-                        var gambar_konten = "{{ asset('images/razen-blog/konten') }}" + '/' + value['gambar_mini'];
+                        var gambar_konten = value['thumbnail'];
 
-                        var foto_penulis = "{{asset('')}}" + value['penulis']['foto'];
-
-                        var tanggal = moment(value.tgl).format('LLLL');
+                        var tanggal = moment(value['pubDate']).format('LLLL');
 
                         data_konten += `<div role="listitem" class="collection-item_panduan w-dyn-item">
                                             <a href="${route_konten}" class="card-panduan direcion-orizontal w-inline-block">
@@ -302,17 +260,15 @@
                                                     <img src="${gambar_konten}" loading="lazy" alt="" sizes="(max-width: 479px) 91vw, (max-width: 991px) 34vw, (max-width: 1439px) 10vw, 122.6796875px" class="card-panduan-image_full">
                                                 </div>
                                                 <div class="card-panduan-text direction-vertical full-width">
-                                                    <h4 fs-cmsfilter-field="title" class="card-panduan-title">${value['judul']}</h4>
+                                                    <h4 fs-cmsfilter-field="title" class="card-panduan-title">${value['title']}</h4>
                                                     <div class="tag-topic">
                                                         <img src="https://assets-global.website-files.com/61af164800e38c4f53c60b4e/62a60158ddad956b7abedd37_icon-srticle-category.svg" loading="lazy" alt="" class="button-circle-image margin-right">
-                                                        <p fs-cmsfilter-field="topic" class="card-panduan-body text-color-black">${value['kategori_konten']}</p>
+                                                        <p fs-cmsfilter-field="topic" class="card-panduan-body text-color-black">${kategori}</p>
                                                     </div>
-                                                    <p fs-cmsfilter-field="paragraph" class="card-panduan-body margin-bottom_16">${value['deskripsi_judul']}</p>
+                                                    <p fs-cmsfilter-field="paragraph" class="card-panduan-body margin-bottom_16">${value['description']}</p>
                                                     <div class="divider-card_horizontal"></div>
                                                     <div class="card-author_block">
-                                                        <div style="background-image:url(${foto_penulis})" class="card-author_image"></div>
                                                         <div class="card-author_name_block">
-                                                            <p class="card-author_title">${value['penulis']['nama']}</p>
                                                             <p fs-cmssort-field="update-date" fs-cmssort-type="date" class="card-article_date">${tanggal}</p>
                                                         </div>
                                                     </div>
@@ -320,41 +276,6 @@
                                             </a>
                                         </div>`;
                     });
-                    data_konten += '</div>';
-
-                    data_konten += '<div role="navigation" aria-label="List" class="w-pagination-wrapper pagination">';
-                    $.each(data.kontens.links, function(key, value){
-                        if (value['label'] == '&laquo; Previous') {
-                            if(value['url'] != null)
-                            {
-                                data_konten += `<a href="${value['url']}" aria-label="Previous Page" class="w-pagination-previous pagination-prev" style="display: none;">
-                                                    <svg class="w-pagination-previous-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                                                    <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M8 10L4 6l4-4"></path>
-                                                    </svg>
-                                                    <div class="pagination-text w-inline-block">Previous</div>
-                                                </a>`;
-                            }
-                        } else if (value['label'] == 'Next &raquo;')
-                        {
-                            if(value['url'] != null)
-                            {
-                                data_konten += `<a href="${value['url']}" aria-label="Next Page" class="w-pagination-next pagination-next">
-                                                    <div class="pagination-text w-inline-block">Next</div>
-                                                    <svg class="w-pagination-next-icon" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" transform="translate(0, 1)">
-                                                    <path fill="none" stroke="currentColor" fill-rule="evenodd" d="M4 2l4 4-4 4"></path>
-                                                    </svg>
-                                                </a>`;
-                            }
-                        } else {
-                            data_konten += '<a fs-cmsload-element="page-button" href="'+value['url']+'" class="pagination-number w-inline-block';
-                            if(value['active'] == true)
-                            {
-                                data_konten += 'w--current';
-                            }
-                            data_konten +='" aria-current="page">'+value['label']+'</a>';
-                        }
-                    });
-
                     data_konten += '</div>';
 
                     $('#div_konten').append(data_konten);

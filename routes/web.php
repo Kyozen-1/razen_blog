@@ -40,6 +40,10 @@ Route::get('/profesi-detail/{id}', [HomeController::class, 'profesi_detail'])->n
 Route::get('/teknis', [HomeController::class, 'teknis'])->name('teknis');
 Route::get('/teknis-detail/{id}', [HomeController::class, 'teknis_detail'])->name('teknis-detail');
 
+Route::get('/berita-indonesia', [HomeController::class, 'berita_indonesia'])->name('berita-indonesia');
+Route::get('/berita-indonesia/filter/kategori/{kategori}', [HomeController::class, 'berita_indonesia_filter_kategori'])->name('berita-indonesia.filter.kategori');
+Route::get('/berita-indonesia/filter/kategori/reset', [HomeController::class, 'berita_indonesia_filter_kategori_reset'])->name('berita-indonesia.filter.kategori.reset');
+
 Route::get('/kosakata', [HomeController::class, 'kosakata'])->name('kosakata');
 Route::get('/kosakata-detail/{id}', [HomeController::class, 'kosakata_detail'])->name('kosakata-detail');
 

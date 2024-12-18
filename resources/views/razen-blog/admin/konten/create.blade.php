@@ -91,6 +91,14 @@
                             </div>
                         </div>
                         <div class="mb-3 position-relative form-group">
+                            <label for="master_web" class="form-label">Web</label>
+                            <select name="master_web[]" id="master_web" class="form-control" multiple required>
+                                @foreach ($masterWebs as $id => $nama)
+                                    <option value="{{$id}}">{{$nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 position-relative form-group">
                             <label for="judul" class="form-label">Judul</label>
                             <input type="text" class="form-control" id="judul" name="judul" required>
                         </div>
@@ -149,18 +157,19 @@
             </div>
         </div>
 
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group position-relative" style="text-align: right">
-                            <button class="btn btn-primary waves-effect waves-light btn-icon" type="submit">Simpan</button>
-                        </div>
+
+    </form>
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group position-relative" style="text-align: right">
+                        <button class="btn btn-primary waves-effect waves-light btn-icon" type="submit" id="btn-submit">Simpan</button>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
     <!-- Content End -->
 @endsection
 
@@ -187,8 +196,25 @@
             $('#tipe_konten').select2();
             $('#kategori_konten_id').select2();
             $('#konten_terkait').select2();
+            $('#master_web').select2();
             CKEDITOR.replace('deskripsi_overview');
             CKEDITOR.config.allowedContent = true;
+        });
+
+        $('#btn-submit').on('click',function(e){
+            e.preventDefault();
+            var form = $(this).parents('form');
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }, function(isConfirm){
+                if (isConfirm) form.submit();
+            });
         });
 
         $('#tipe_konten').change(function(){

@@ -1,5 +1,5 @@
 @extends('razen-blog.layouts.app')
-@section('title', 'Razen Blog | Master Kategori Konten')
+@section('title', 'Razen Blog | Master Web')
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -35,11 +35,11 @@
         <div class="row">
         <!-- Title Start -->
         <div class="col-12 col-md-7">
-            <h1 class="mb-0 pb-0 display-4" id="title"> Master Kategori Konten</h1>
+            <h1 class="mb-0 pb-0 display-4" id="title"> Master Web</h1>
             <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
                 <ul class="breadcrumb pt-0">
                     <li class="breadcrumb-item"><a href="{{ route('razen-blog.admin.dashboard.index') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('razen-blog.master-data.kategori-konten.index') }}">Master Kategori Konten</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('razen-blog.master-data.web.index') }}">Master Web</a></li>
                 </ul>
             </nav>
         </div>
@@ -58,12 +58,12 @@
     <div class="data-table-rows slim">
         <!-- Table Start -->
         <div class="data-table-responsive-wrapper">
-            <table id="kategori_berita_table" class="data-table w-100">
+            <table id="web_table" class="data-table w-100">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Konten</th>
                         <th>Nama</th>
+                        <th>Unique Code</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -81,20 +81,15 @@
                 </div>
                 <div class="modal-body">
                     <span id="form_result"></span>
-                    <form class="form-horizontal" id="master_kategori_berita_form" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" id="web_form" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3 position-relative form-group">
-                            <label for="tipe_konten" class="control-label">Tipe Konten</label>
-                            <select name="tipe_konten" id="tipe_konten" class="form-control">
-                                <option value="">--- Pilih Konten ---</option>
-                                <option value="berita">Berita</option>
-                                <option value="profesi">Profesi</option>
-                                <option value="teknis">Teknis</option>
-                            </select>
-                        </div>
                         <div class="mb-3 position-relative form-group">
                             <label for="nama" class="control-label">Nama</label>
                             <input type="text" class="form-control" name="nama" id="nama" required>
+                        </div>
+                        <div class="mb-3 position-relative form-group">
+                            <label for="unique_code" class="control-label">Unique Code</label>
+                            <input type="text" class="form-control" name="unique_code" id="unique_code" required>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -117,12 +112,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group mb-3 position-relative">
-                        <label for="detail_tipe_konten" class="control-label">Tipe Konten</label>
-                        <input type="text" id="detail_tipe_konten" class="form-control" disabled>
-                    </div>
-                    <div class="form-group mb-3 position-relative">
                         <label for="detail_nama" class="control-label">Nama</label>
                         <input type="text" id="detail_nama" class="form-control" disabled>
+                    </div>
+                    <div class="form-group mb-3 position-relative">
+                        <label for="detail_unique_code" class="control-label">Unique Code</label>
+                        <input type="text" id="detail_unique_code" class="form-control" disabled>
                     </div>
                 </div>
             </div><!-- /.modal-content -->
@@ -170,11 +165,11 @@
         $(document).ready(function(){
             $('.dropify').dropify();
 
-            var dataTables = $('#kategori_berita_table').DataTable({
+            var dataTables = $('#web_table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('razen-blog.master-data.kategori-konten.index') }}"
+                    url: "{{ route('razen-blog.master-data.web.index') }}"
                 },
                 columns: [
                     {
@@ -183,12 +178,12 @@
                         orderable: false
                     },
                     {
-                        data: 'tipe_konten',
-                        name: 'tipe_konten'
-                    },
-                    {
                         data: 'nama',
                         name: 'nama'
+                    },
+                    {
+                        data: 'unique_code',
+                        name: 'unique_code'
                     },
                     {
                         data: 'aksi',
@@ -199,8 +194,7 @@
         });
 
         $('#create').click(function(){
-            $('#master_kategori_berita_form')[0].reset();
-            $("[name='tipe_konten']").val('').trigger('change');
+            $('#web_form')[0].reset();
             $('.dropify-clear').click();
             $('#aksi_button').text('Save');
             $('#aksi_button').prop('disabled', false);
@@ -210,12 +204,12 @@
             $('#form_result').html('');
         });
 
-        $('#master_kategori_berita_form').on('submit', function(e){
+        $('#web_form').on('submit', function(e){
             e.preventDefault();
             if($('#aksi').val() == 'Save')
             {
                 $.ajax({
-                    url: "{{ route('razen-blog.master-data.kategori-konten.store') }}",
+                    url: "{{ route('razen-blog.master-data.web.store') }}",
                     method: "POST",
                     data: new FormData(this),
                     dataType: "json",
@@ -229,7 +223,6 @@
                         {
                             html = '<div class="alert alert-danger">'+data.errors+'</div>';
                             $('.dropify-clear').click();
-                            $("[name='tipe_konten']").val('').trigger('change');
                             $('#aksi_button').prop('disabled', false);
                             $('#aksi_button').text('Save');
                         }
@@ -238,9 +231,9 @@
                             html = '<div class="alert alert-success">'+data.success+'</div>';
                             $('.dropify-clear').click();
                             $('#aksi_button').prop('disabled', false);
-                            $('#master_kategori_berita_form')[0].reset();
+                            $('#web_form')[0].reset();
                             $('#aksi_button').text('Save');
-                            $('#kategori_berita_table').DataTable().ajax.reload();
+                            $('#web_table').DataTable().ajax.reload();
                         }
 
                         $('#form_result').html(html);
@@ -250,7 +243,7 @@
             if($('#aksi').val() == 'Edit')
             {
                 $.ajax({
-                    url: "{{ route('razen-blog.master-data.kategori-konten.update') }}",
+                    url: "{{ route('razen-blog.master-data.web.update') }}",
                     method: "POST",
                     data: new FormData(this),
                     dataType: "json",
@@ -267,10 +260,10 @@
                         }
                         if(data.success)
                         {
-                            $('#master_kategori_berita_form')[0].reset();
+                            $('#web_form')[0].reset();
                             $('#aksi_button').prop('disabled', false);
                             $('#aksi_button').text('Save');
-                            $('#kategori_berita_table').DataTable().ajax.reload();
+                            $('#web_table').DataTable().ajax.reload();
                             $('#addEditModal').modal('hide');
                             Swal.fire({
                                 icon: 'success',
@@ -287,7 +280,7 @@
 
         $(document.body).on('click', '.detail', function(){
             var id = $(this).attr('id');
-            var url = "{{ route('razen-blog.master-data.kategori-konten.show', ['id' => ":id"]) }}";
+            var url = "{{ route('razen-blog.master-data.web.show', ['id' => ":id"]) }}";
             url = url.replace(':id', id);
             $.ajax({
                 url: url,
@@ -295,8 +288,8 @@
                 success: function(data)
                 {
                     $('#detail-title').text('Detail Data');
-                    $('#detail_tipe_konten').val(data.result.tipe_konten);
                     $('#detail_nama').val(data.result.nama);
+                    $('#detail_unique_code').val(data.result.unique_code);
                     $('#detail').modal('show');
                 }
             });
@@ -305,7 +298,7 @@
         $(document).on('click', '.edit', function(){
             var id = $(this).attr('id');
             $('#form_result').html('');
-            var url = "{{ route('razen-blog.master-data.kategori-konten.edit', ['id' => ":id"]) }}";
+            var url = "{{ route('razen-blog.master-data.web.edit', ['id' => ":id"]) }}";
             url = url.replace(':id', id);
             $.ajax({
                 url: url,
@@ -313,7 +306,8 @@
                 success: function(data)
                 {
                     $('#nama').val(data.result.nama);
-                    $("[name='tipe_konten']").val(data.result.tipe_konten).trigger('change');
+                    $('#unique_code').val(data.result.unique_code);
+
                     $('#hidden_id').val(id);
                     $('.modal-title').text('Edit Data');
                     $('#aksi_button').text('Edit');
@@ -335,7 +329,7 @@
         });
 
         $('#ok_button').click(function(){
-            var url = "{{ route('razen-blog.master-data.kategori-konten.destroy', ['id' => ":id"]) }}";
+            var url = "{{ route('razen-blog.master-data.web.destroy', ['id' => ":id"]) }}";
             url = url.replace(":id", user_id);
             $.ajax({
                 url: url,
@@ -352,7 +346,7 @@
                         title: 'Berhasil di hapus',
                         showConfirmButton: true
                     });
-                    $('#kategori_berita_table').DataTable().ajax.reload();
+                    $('#web_table').DataTable().ajax.reload();
                 }
             });
         });

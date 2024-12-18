@@ -33,4 +33,9 @@ class Konten extends Model
     {
         return $this->hasMany('App\Models\PivotSubJudulKonten', 'konten_id');
     }
+
+    public function pivot_konten_and_web()
+    {
+        return $this->hasMany('App\Models\PivotKontenAndWeb', 'konten_id');
+    }
 }

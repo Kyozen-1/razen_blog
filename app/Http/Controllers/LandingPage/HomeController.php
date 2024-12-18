@@ -267,6 +267,34 @@ class HomeController extends Controller
         ]);
     }
 
+    public function berita_indonesia()
+    {
+        $url_api = "https://api-berita-indonesia.vercel.app/";
+        $channels = ["antara", "cnbc", "cnn", "jpnn", "kumparan", "merdeka", "okezone", "republika", "sindonews", "suara", "tempo", "tribun"];
+        $kategori_berita_indonesias = ["terbaru", "politik", "hukum", "ekonomi", "bola", "olahraga", "humaniora", "lifestyle", "hiburan", "dunia", "tekno", "otomotif", "investment", "news", "market", "entrepreneur", "syariah", "tech", "internasional", "teknologi", "gayahidup", "jakarta", "gaya", "khas", "sehat", "jateng", "celebrity", "sports", "economy", "techno", "daerah", "khazanah", "islam", "leisure", "nasional", "metro", "ekbis", "international", "sains", "edukasi", "kalam", "bisnis", "entertainment", "health", "cantik", "seleb", "travel", "difabel", "creativelab", "inforial", "event", "superskor", "sport", "parapuan"];
+        $beritas = [];
+        $client = new Client();
+        foreach ($channels as $channel) {
+            $url = $url_api. $channel . '/terbaru';
+            try {
+                $response_data = json_decode($client->get($url, ['verify' => false])->getBody());
+                if($response_data->success == 'true')
+                {
+                    $data_berita = $response_data->data->posts;
+                    for ($i=0; $i < 3; $i++) {
+                        $beritas[] = $data_berita[$i];
+                    }
+                }
+            } catch (\Throwable $th) {
+
+            }
+        }
+        return view('landing-page.berita-indonesia.index', [
+            'beritas' => $beritas,
+            'kategori_berita_indonesias' => $kategori_berita_indonesias
+        ]);
+    }
+
     public function kosakata()
     {
         return view('landing-page.kosakata.index');
@@ -287,5 +315,55 @@ class HomeController extends Controller
         $response = $client->get($url);
 
         return $response->getBody();
+    }
+
+    public function berita_indonesia_filter_kategori($kategori)
+    {
+        $url_api = "https://api-berita-indonesia.vercel.app/";
+        $channels = ["antara", "cnbc", "cnn", "jpnn", "kumparan", "merdeka", "okezone", "republika", "sindonews", "suara", "tempo", "tribun"];
+        $beritas = [];
+        $client = new Client();
+        foreach ($channels as $channel) {
+            $url = $url_api. $channel . '/'.$kategori;
+            try {
+                $response_data = json_decode($client->get($url, ['verify' => false])->getBody());
+                if($response_data->success == 'true')
+                {
+                    $data_berita = $response_data->data->posts;
+                    for ($i=0; $i < 3; $i++) {
+                        $beritas[] = $data_berita[$i];
+                    }
+                }
+            } catch (\Throwable $th) {
+
+            }
+        }
+
+        return response()->json(['kontens' => $beritas]);
+    }
+
+    public function berita_indonesia_filter_kategori_reset()
+    {
+        $url_api = "https://api-berita-indonesia.vercel.app/";
+        $channels = ["antara", "cnbc", "cnn", "jpnn", "kumparan", "merdeka", "okezone", "republika", "sindonews", "suara", "tempo", "tribun"];
+        $beritas = [];
+        $client = new Client();
+        foreach ($channels as $channel) {
+            $url = $url_api. $channel . '/terbaru';
+            try {
+                $response_data = json_decode($client->get($url, ['verify' => false])->getBody());
+                if($response_data->success == 'true')
+                {
+                    $data_berita = $response_data->data->posts;
+                    for ($i=0; $i < 3; $i++) {
+                        $beritas[] = $data_berita[$i];
+                    }
+                }
+            } catch (\Throwable $th) {
+
+            }
+        }
+
+        return response()->json(['kontens' => $beritas]);
     }
 }

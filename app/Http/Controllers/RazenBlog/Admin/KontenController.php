@@ -18,6 +18,8 @@ use App\Models\Konten;
 use App\Models\MasterKategoriKonten;
 use App\Models\PivotKontenTerkait;
 use App\Models\PivotSubJudulKonten;
+use App\Models\MasterWeb;
+use App\Models\PivotKontenAndWeb;
 
 class KontenController extends Controller
 {
@@ -56,9 +58,10 @@ class KontenController extends Controller
     public function create()
     {
         $kontens = Konten::select('id', 'judul')->latest()->get();
-
+        $masterWebs = MasterWeb::where('is_active', '1')->pluck('nama', 'id');
         return view('razen-blog.admin.konten.create', [
-            'kontens' => $kontens
+            'kontens' => $kontens,
+            'masterWebs' => $masterWebs
         ]);
     }
 
@@ -76,11 +79,13 @@ class KontenController extends Controller
             'judul' => 'required',
             'deskripsi_judul' => 'required',
             'deskripsi_overview' => 'required',
-            'gambar_mini' => 'required | mimes:jpeg,jpg,png'
+            'gambar_mini' => 'required | mimes:jpeg,jpg,png',
+            'master_web' => 'required'
         ]);
         if($errors -> fails())
         {
-            return back()->withErrors($errors)->withInput();
+            Alert::error('Gagal!', $errors);
+            return back();
         }
 
         $gambarMiniExtension = $request->gambar_mini->extension();
@@ -121,6 +126,14 @@ class KontenController extends Controller
             }
         }
 
+        $master_web = $request->master_web;
+        for ($i=0; $i < count($master_web); $i++) {
+            $pivot_konten_pivot_and_web = new PivotKontenAndWeb;
+            $pivot_konten_pivot_and_web->konten_id = $konten->id;
+            $pivot_konten_pivot_and_web->master_web_id = $master_web[$i];
+            $pivot_konten_pivot_and_web->save();
+        }
+
         Alert::success('Berhasil', 'Berhasil menambahkan konten');
         return redirect()->route('razen-blog.penulis.konten.index');
     }
@@ -143,10 +156,20 @@ class KontenController extends Controller
             $pivot_konten_terkait[] = $value->child_id;
         }
 
+        $masterWebs = MasterWeb::where('is_active', '1')->pluck('nama', 'id');
+
+        $getPivotKontenAndWebs = PivotKontenAndWeb::where('konten_id', $id);
+        $webs = [];
+        foreach ($getPivotKontenAndWebs as $getPivotKontenAndWeb) {
+            $webs[] = $getPivotKontenAndWeb->master_web_id;
+        }
+
         return view('razen-blog.admin.konten.edit', [
             'konten' => $konten,
             'kontens' => $kontens,
-            'pivot_konten_terkait' => $pivot_konten_terkait
+            'pivot_konten_terkait' => $pivot_konten_terkait,
+            'masterWebs' => $masterWebs,
+            'webs' => $webs
         ]);
     }
 
@@ -157,11 +180,13 @@ class KontenController extends Controller
             'kategori_konten_id' => 'required',
             'judul' => 'required',
             'deskripsi_judul' => 'required',
-            'deskripsi_overview' => 'required'
+            'deskripsi_overview' => 'required',
+            'master_web' => 'required'
         ]);
         if($errors -> fails())
         {
-            return back()->withErrors($errors)->withInput();
+            Alert::error('Gagal!', $errors->errors()->all());
+            return back();
         }
 
         $konten = Konten::find($request->konten_id);
@@ -234,6 +259,19 @@ class KontenController extends Controller
             }
         }
 
+        $getPivotKontenAndWebs = PivotKontenAndWeb::where('konten_id', $konten->id)->get();
+        foreach ($getPivotKontenAndWebs as $getPivotKontenAndWeb) {
+            PivotKontenAndWeb::find($getPivotKontenAndWeb->id)->delete();
+        }
+
+        $master_web = $request->master_web;
+        for ($i=0; $i < count($master_web); $i++) {
+            $pivot_konten_pivot_and_web = new PivotKontenAndWeb;
+            $pivot_konten_pivot_and_web->konten_id = $konten->id;
+            $pivot_konten_pivot_and_web->master_web_id = $master_web[$i];
+            $pivot_konten_pivot_and_web->save();
+        }
+
         Alert::success('Berhasil', 'Berhasil merubah konten');
         return redirect()->route('razen-blog.admin.konten.index');
     }
@@ -248,6 +286,11 @@ class KontenController extends Controller
         $getPivotKontenTerkaits = PivotKontenTerkait::where('konten_id', $id)->get();
         foreach ($getPivotKontenTerkaits as $value) {
             PivotKontenTerkait::find($value->id)->delete();
+        }
+
+        $getPivotKontenAndWebs = PivotKontenAndWeb::where('konten_id', $id)->get();
+        foreach ($getPivotKontenAndWebs as $getPivotKontenAndWeb) {
+            PivotKontenAndWeb::find($getPivotKontenAndWeb->id)->delete();
         }
 
         $konten = Konten::find($id);

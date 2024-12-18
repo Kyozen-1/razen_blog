@@ -91,6 +91,14 @@
                             </div>
                         </div>
                         <div class="mb-3 position-relative form-group">
+                            <label for="master_web" class="form-label">Web</label>
+                            <select name="master_web[]" id="master_web" class="form-control" style="width: 100%" multiple required>
+                                @foreach ($masterWebs as $id => $nama)
+                                    <option value="{{$id}}">{{$nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 position-relative form-group">
                             <label for="judul" class="form-label">Judul</label>
                             <input type="text" class="form-control" id="judul" name="judul" value="{{$konten->judul}}" required>
                         </div>
@@ -228,6 +236,9 @@
     <script>
         var kategori_tipe_konten = "{{ $konten->kategori_konten->tipe_konten }}";
         var kategori_konten_id = "{{ $konten->kategori_konten_id}}";
+        var web = @json($webs);
+        $('#master_web').select2();
+        $("[name='master_web[]']").val(web).trigger('change');
         if(kategori_tipe_konten != "")
         {
             $.ajax({

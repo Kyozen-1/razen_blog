@@ -14,6 +14,8 @@ use App\Http\Controllers\RazenBlog\LandingPage\PanduanController;
 // Master Data
 use App\Http\Controllers\RazenBlog\MasterData\MediaSosialController;
 use App\Http\Controllers\RazenBlog\MasterData\KategoriKontenController;
+use App\Http\Controllers\RazenBlog\MasterData\WebController;
+
 use App\Http\Controllers\RazenBlog\ManagemenAkun\PenulisController;
 
 Route::prefix('admin')->group(function(){
@@ -111,6 +113,15 @@ Route::prefix('master-data')->group(function(){
         Route::get('/edit/{id}',[KategoriKontenController::class, 'edit'])->name('razen-blog.master-data.kategori-konten.edit');
         Route::post('/update',[KategoriKontenController::class, 'update'])->name('razen-blog.master-data.kategori-konten.update');
         Route::get('/destroy/{id}',[KategoriKontenController::class, 'destroy'])->name('razen-blog.master-data.kategori-konten.destroy');
+    });
+
+    Route::prefix('web')->group(function(){
+        Route::get('/', [WebController::class, 'index'])->name('razen-blog.master-data.web.index');
+        Route::get('/detail/{id}', [WebController::class, 'show'])->name('razen-blog.master-data.web.show');
+        Route::post('/',[WebController::class, 'store'])->name('razen-blog.master-data.web.store');
+        Route::get('/edit/{id}',[WebController::class, 'edit'])->name('razen-blog.master-data.web.edit');
+        Route::post('/update',[WebController::class, 'update'])->name('razen-blog.master-data.web.update');
+        Route::get('/destroy/{id}',[WebController::class, 'destroy'])->name('razen-blog.master-data.web.destroy');
     });
 });
 

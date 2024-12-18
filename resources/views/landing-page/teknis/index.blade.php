@@ -56,6 +56,7 @@
                             <a href="{{ route('berita') }}" aria-current="page" class="filter-category w-button">berita</a>
                             <a href="{{ route('profesi') }}" class="filter-category w-button">profesi</a>
                             <a href="{{ route('teknis') }}" class="filter-category state-active w-button w--current">teknis</a>
+                            <a href="{{ route('berita-indonesia') }}" class="filter-category w-button">Berita Indonesia</a>
                         </div>
                     </div>
                 </div>

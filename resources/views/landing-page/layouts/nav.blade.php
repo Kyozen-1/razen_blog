@@ -11,5 +11,6 @@
     <a href="{{ route('berita') }}" aria-current="page" class="nav-link-text w--current">Berita</a>
     <a href="{{ route('profesi') }}" class="nav-link-text">Profesi</a>
     <a href="{{ route('teknis') }}" class="nav-link-text">Teknis</a>
+    <a href="{{ route('berita-indonesia') }}" class="nav-link-text">Berita Indonesia</a>
     <a href="{{ route('kosakata') }}" class="nav-link-text hidden">Kosakata</a>
 </nav>
