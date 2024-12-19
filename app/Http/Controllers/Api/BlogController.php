@@ -65,6 +65,15 @@ class BlogController extends Controller
     public function divisiWeb($unique_code)
     {
         try {
+            $cekKonten = Konten::whereHas('pivot_konten_and_web', function($q) use ($unique_code){
+                $q->whereHas('master_web', function($q) use ($unique_code){
+                    $q->where('unique_code', 'like', '%'.$unique_code.'%');
+                });
+            })->first();
+            if(!$cekKonten)
+            {
+                $unique_code = Crypt::decryptString($unique_code);
+            }
             $kontens = Konten::whereHas('pivot_konten_and_web', function($q) use ($unique_code){
                 $q->whereHas('master_web', function($q) use ($unique_code){
                     $q->where('unique_code', 'like', '%'.$unique_code.'%');
@@ -144,6 +153,52 @@ class BlogController extends Controller
                 'code' => 200,
                 'status' => 'success',
                 'data' => $data
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'code' => 500,
+                'status' => 'error',
+                'message' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function kategoriKonten($id)
+    {
+        try {
+            $cekKonten = Konten::where('kategori_konten_id', $id)->first();
+            if(!$cekKonten)
+            {
+                $id = Crypt::decryptString($id);
+            }
+            $kontens = Konten::where('kategori_konten_id', $id)->get()
+            ->map(function($data){
+                return [
+                    'id' => Crypt::encryptString($data->id),
+                    'penulis' => $data->is_admin == '0' ? $data->penulis->nama : 'Razen Blog',
+                    'kategori' => [
+                        'id' => Crypt::encryptString($data->kategori_konten_id),
+                        'nama' => $data->kategori_konten->nama,
+                    ],
+                    'web' => $data->pivot_konten_and_web->map(function($data){
+                        return [
+                            'id' => Crypt::encryptString($data->master_web_id),
+                            'nama' => $data->master_web->nama,
+                            'unique_code' => Crypt::encryptString($data->master_web->unique_code),
+                        ];
+                    }),
+                    'judul' => $data->judul,
+                    'deskripsi_judul' => $data->deskripsi_judul,
+                    'deskripsi_overview' => $data->deskripsi_overview,
+                    'gambar_mini' => asset('images/razen-blog/konten/'.$data->gambar_mini),
+                    'tgl' => $data->tgl
+                ];
+            });
+
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'data' => $kontens
             ]);
         } catch (\Throwable $th) {
             return response()->json([
