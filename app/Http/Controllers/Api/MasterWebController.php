@@ -56,7 +56,7 @@ class MasterWebController extends Controller
             $data = [
                 'id' => Crypt::encryptString($masterWeb->id),
                 'nama' => $masterWeb->nama,
-                'unique_code' => Crypt::encryptString($data->unique_code)
+                'unique_code' => Crypt::encryptString($masterWeb->unique_code)
             ];
             return response()->json([
                 'code' => 200,
